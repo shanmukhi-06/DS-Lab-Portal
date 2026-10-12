@@ -12,15 +12,21 @@ app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'ds_lab_portal_secret_2026')
 app.config['MAX_CONTENT_LENGTH'] = 64 * 1024 * 1024  # 64 MB limit for video & images
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static', 'uploads')
+if os.environ.get("VERCEL"):
+    UPLOAD_FOLDER = os.path.join('/tmp', 'uploads')
+else:
+    UPLOAD_FOLDER = os.path.join(BASE_DIR, 'static', 'uploads')
 IMAGE_UPLOAD_FOLDER = os.path.join(UPLOAD_FOLDER, 'images')
 VIDEO_UPLOAD_FOLDER = os.path.join(UPLOAD_FOLDER, 'videos')
 
 ALLOWED_IMAGE_EXTENSIONS = {'jpg', 'jpeg', 'png', 'webp', 'svg'}
 ALLOWED_VIDEO_EXTENSIONS = {'mp4', 'webm', 'mov'}
 
-os.makedirs(IMAGE_UPLOAD_FOLDER, exist_ok=True)
-os.makedirs(VIDEO_UPLOAD_FOLDER, exist_ok=True)
+try:
+    os.makedirs(IMAGE_UPLOAD_FOLDER, exist_ok=True)
+    os.makedirs(VIDEO_UPLOAD_FOLDER, exist_ok=True)
+except Exception:
+    pass
 
 
 def allowed_file(filename, allowed_extensions):
@@ -53,6 +59,11 @@ database.init_db()
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/static/uploads/<path:filename>')
+def serve_uploads(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename)
 
 
 # Overview statistics

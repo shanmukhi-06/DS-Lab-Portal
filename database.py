@@ -71,7 +71,19 @@ def get_db():
             USE_MYSQL = False
 
     # SQLite fallback
-    db_path = os.path.join(os.path.dirname(__file__), f"{DB_NAME}.db")
+    if os.environ.get("VERCEL"):
+        import shutil
+        tmp_db = os.path.join("/tmp", f"{DB_NAME}.db")
+        source_db = os.path.join(os.path.dirname(__file__), f"{DB_NAME}.db")
+        if not os.path.exists(tmp_db) and os.path.exists(source_db):
+            try:
+                shutil.copy2(source_db, tmp_db)
+            except Exception as ce:
+                logger.warning(f"Copying SQLite db to /tmp failed: {ce}")
+        db_path = tmp_db if os.path.exists(tmp_db) else source_db
+    else:
+        db_path = os.path.join(os.path.dirname(__file__), f"{DB_NAME}.db")
+
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
