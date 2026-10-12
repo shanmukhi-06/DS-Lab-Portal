@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <rect width="600" height="450" fill="#f1f5f9"/>
+  <rect x="40" y="40" width="520" height="370" rx="8" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="2"/>
+  <circle cx="300" cy="190" r="45" fill="#94a3b8"/>
+  <path d="M220 310 L280 230 L350 310 Z" fill="#64748b"/>
+  <path d="M330 310 L380 250 L430 310 Z" fill="#94a3b8"/>
+  <text x="300" y="360" font-family="system-ui, sans-serif" font-size="20" font-weight="600" fill="#475569" text-anchor="middle">Data Science Laboratory Record</text>
+</svg>

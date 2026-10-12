@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Science Digital Library & Lab Record – MBU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+  <!-- ==================== TOP NAVIGATION BAR ==================== -->
+  <header class="top-nav">
+    <div class="nav-container">
+      <!-- Left: MBU Logo & Brand Title -->
+      <a href="/" class="nav-brand">
+        <img src="/static/images/mbu-logo.png" alt="MBU Logo" class="brand-logo-img">
+        <div class="brand-text">
+          <span class="brand-title">Data Science</span>
+          <span class="brand-sub">Digital Laboratory</span>
+        </div>
+      </a>
+
+      <!-- Center: Navigation Links (Matching Sketch) -->
+      <div class="nav-center-group">
+        <span class="pro-badge">Professional &amp; Commercial Websites</span>
+        <nav class="nav-links" id="mainNavLinks">
+          <button type="button" class="nav-link active" data-tab="all">Home</button>
+          <button type="button" class="nav-link" data-tab="modules">Modules</button>
+          <button type="button" class="nav-link" data-tab="labexp">Lab exp</button>
+          <button type="button" class="nav-link" data-tab="tools">Tools</button>
+          <button type="button" class="nav-link" data-tab="resources">Resources</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO & STUDENT ID CARD SECTION ==================== -->
+  <div class="hero-wrapper">
+    <div class="container hero-grid">
+      
+      <!-- Left: Heading & Lab Overview -->
+      <div class="hero-left">
+        <div class="hero-dept-tag">Mohan Babu University &bull; Department of Data Science</div>
+        <h1 class="hero-main-title">Data Science</h1>
+        <p class="hero-tagline">“Turn Data into Knowledge”</p>
+        <p class="hero-desc">
+          Official academic portal for the Data Science Laboratory. 
+          Manage syllabus modules, execute laboratory experiments, explore Python analytics tools, and access digital library resources.
+        </p>
+
+        <!-- Category Overview Bar (4 Sketched Cards) -->
+        <div class="overview-cards-grid">
+          <!-- Card 1: Modules -->
+          <div class="overview-card" data-section-target="modules">
+            <div class="overview-card__header">
+              <div class="overview-card__box-icon">&#128218;</div>
+              <span class="overview-card__count" id="countModules">0 Modules</span>
+            </div>
+            <h3 class="overview-card__title">Modules</h3>
+            <p class="overview-card__desc">Core syllabus topics covering Python computing, EDA, statistical models, and ML pipelines.</p>
+            <div class="overview-card__actions">
+              <button type="button" class="btn btn--sm btn--secondary" id="quickAddModuleBtn">+ Add</button>
+              <button type="button" class="btn btn--sm btn--primary" data-nav-target="modules">View more</button>
+            </div>
+          </div>
+
+          <!-- Card 2: Lab Exp -->
+          <div class="overview-card overview-card--accent" data-section-target="labexp">
+            <div class="overview-card__header">
+              <div class="overview-card__box-icon">&#9881;</div>
+              <span class="overview-card__count" id="countExperiments">0 Exp</span>
+            </div>
+            <h3 class="overview-card__title">Lab exp</h3>
+            <p class="overview-card__desc">Complete digital lab record with Aim, Procedure, Circuit/Code demos, and videos.</p>
+            <div class="overview-card__actions">
+              <button type="button" class="btn btn--sm btn--secondary" id="quickAddExpBtn">+ Add</button>
+              <button type="button" class="btn btn--sm btn--primary" data-nav-target="labexp">View more</button>
+            </div>
+          </div>
+
+          <!-- Card 3: Tools -->
+          <div class="overview-card" data-section-target="tools">
+            <div class="overview-card__header">
+              <div class="overview-card__box-icon">&#128295;</div>
+              <span class="overview-card__count" id="countTools">0 Tools</span>
+            </div>
+            <h3 class="overview-card__title">Tools</h3>
+            <p class="overview-card__desc">Development platforms, Python 3, Jupyter Lab, VS Code, Pandas, and machine learning utilities.</p>
+            <div class="overview-card__actions">
+              <button type="button" class="btn btn--sm btn--secondary" id="quickAddToolBtn">+ Add</button>
+              <button type="button" class="btn btn--sm btn--primary" data-nav-target="tools">View more</button>
+            </div>
+          </div>
+
+          <!-- Card 4: Resources -->
+          <div class="overview-card" data-section-target="resources">
+            <div class="overview-card__header">
+              <div class="overview-card__box-icon">&#128214;</div>
+              <span class="overview-card__count" id="countResources">0 Resources</span>
+            </div>
+            <h3 class="overview-card__title">Resources</h3>
+            <p class="overview-card__desc">Data Science textbooks, MBU lab manuals, Python cheat sheets, and machine learning handbooks.</p>
+            <div class="overview-card__actions">
+              <button type="button" class="btn btn--sm btn--secondary" id="quickAddResBtn">+ Add</button>
+              <button type="button" class="btn btn--sm btn--primary" data-nav-target="resources">View more</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Student ID Card (As Drawn in Sketch) -->
+      <aside class="id-card" id="studentIdCard" aria-label="Student Profile ID Card">
+        <div class="id-card__strip">
+          <span class="id-card__label">Id &bull; STUDENT PROFILE</span>
+        </div>
+        <div class="id-card__body">
+          <!-- Circular / Passport Photo Frame -->
+          <div class="id-card__photo-box">
+            <img class="id-card__photo" id="idPhoto" src="/static/images/shanmukhi-profile.png" alt="Student photo">
+          </div>
+
+          <!-- Fields Matching Sketch: Name, Roll no, Dept, Sec, Sub, Faculty -->
+          <dl class="id-card__details">
+            <div>
+              <dt>Name</dt>
+              <dd id="idName">Shanmukhi</dd>
+            </div>
+            <div>
+              <dt>Roll no</dt>
+              <dd id="idRoll">24102A030132</dd>
+            </div>
+            <div>
+              <dt>Dept</dt>
+              <dd id="idDept">Data Science</dd>
+            </div>
+            <div>
+              <dt>Sec</dt>
+              <dd id="idSec">DS-3</dd>
+            </div>
+            <div>
+              <dt>Sub</dt>
+              <dd id="idSub" class="highlight-sub">Data Science</dd>
+            </div>
+            <div>
+              <dt>Faculty</dt>
+              <dd id="idFaculty">Faculty In-Charge</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Bottom Icons Matching Sketch: Web, GH, View More / Edit -->
+        <div class="id-card__bottom-bar">
+          <div class="id-card__socials">
+            <a href="#" id="idWebLink" target="_blank" rel="noopener noreferrer" class="social-chip" title="Personal Website">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+              <span>Web</span>
+            </a>
+            <a href="https://github.com/shanmukhi-06" id="idGhLink" target="_blank" rel="noopener noreferrer" class="social-chip social-chip--gh" title="GitHub Account">
+              <svg viewBox="0 0 16 16" width="14" height="14" fill="currentColor">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              <span>GH</span>
+            </a>
+          </div>
+          <button type="button" class="btn btn--sm btn--primary" id="editProfileBtn">
+            <span>View / Edit</span>
+          </button>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- ==================== MAIN CONTENT SECTIONS ==================== -->
+  <main class="container main-content">
+
+    <!-- ================= SECTION 1: LAB EXPERIMENTS (Lab Exp) ================= -->
+    <section class="content-section" id="section-labexp" aria-labelledby="labExpHeading">
+      <div class="section-top">
+        <div>
+          <span class="section-kicker">Data Science &bull; Digital Lab Record</span>
+          <h2 class="section-title" id="labExpHeading">Lab Experiments (Lab Exp)</h2>
+        </div>
+        <button type="button" class="btn btn--primary" id="openAddExpModalBtn">+ Add Experiment</button>
+      </div>
+
+      <!-- Toolbar: Search Input -->
+      <div class="toolbar">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor">
+            <circle cx="9" cy="9" r="6" stroke-width="2"/>
+            <line x1="13.5" y1="13.5" x2="18" y2="18" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input type="search" id="searchInput" class="search-input" placeholder="Search experiments by number, title, or description..." aria-label="Search experiments">
+        </div>
+        <div class="toolbar-stats">
+          <span id="experimentCountBadge" class="count-badge">0 Experiments</span>
+        </div>
+      </div>
+
+      <!-- Experiments Grid List -->
+      <div id="experimentGrid" class="exp-grid" aria-live="polite"></div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="empty-state" hidden>
+        <div class="empty-icon">&#128202;</div>
+        <h3 class="empty-title">No experiments found</h3>
+        <p class="empty-text">Click <strong>+ Add Experiment</strong> above to record your first laboratory experiment.</p>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 2: MODULES ================= -->
+    <section class="content-section" id="section-modules" aria-labelledby="modulesHeading">
+      <div class="section-top">
+        <div>
+          <span class="section-kicker">Curriculum &bull; Data Science</span>
+          <h2 class="section-title" id="modulesHeading">Modules</h2>
+        </div>
+        <button type="button" class="btn btn--primary" id="openAddModuleModalBtn">+ Add Module</button>
+      </div>
+      <p class="section-desc">Structured learning modules covering Python computing, exploratory data analysis, statistical modeling, and machine learning pipelines.</p>
+      
+      <div id="modulesGrid" class="modules-grid" aria-live="polite"></div>
+    </section>
+
+    <!-- ================= SECTION 3: TOOLS ================= -->
+    <section class="content-section" id="section-tools" aria-labelledby="toolsHeading">
+      <div class="section-top">
+        <div>
+          <span class="section-kicker">Software &bull; Simulators &bull; Environments</span>
+          <h2 class="section-title" id="toolsHeading">Tools</h2>
+        </div>
+        <button type="button" class="btn btn--primary" id="openAddToolModalBtn">+ Add Tool</button>
+      </div>
+      <p class="section-desc">Essential software platforms, data science development environments, Python libraries, and analytical tools used in laboratory sessions.</p>
+      
+      <div id="toolsGrid" class="tools-grid" aria-live="polite"></div>
+    </section>
+
+    <!-- ================= SECTION 4: RESOURCES ================= -->
+    <section class="content-section" id="section-resources" aria-labelledby="resourcesHeading">
+      <div class="section-top">
+        <div>
+          <span class="section-kicker">Reference Materials &bull; Digital Library</span>
+          <h2 class="section-title" id="resourcesHeading">Resources</h2>
+        </div>
+        <button type="button" class="btn btn--primary" id="openAddResourceModalBtn">+ Add Resource</button>
+      </div>
+      <p class="section-desc">Curated academic reference textbooks, MBU laboratory manuals, dataset repositories, and machine learning cheat sheets.</p>
+      
+      <div id="resourcesGrid" class="resources-grid" aria-live="polite"></div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>Department of Data Science &bull; Digital Laboratory &bull; Mohan Babu University (MBU)</p>
+      <p class="footer-sub">Student Portal &bull; Record System &bull; Shanmukhi (Roll No: 24102A030132 &bull; Sec: DS-3)</p>
+    </div>
+  </footer>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- 1. ADD EXPERIMENT MODAL -->
+  <div class="modal" id="addExperimentModal" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog modal__dialog--wide" role="dialog" aria-modal="true" aria-labelledby="addExpModalTitle">
+      <div class="modal__header">
+        <h2 id="addExpModalTitle" class="modal__title">Add Experiment (Lab Exp)</h2>
+        <button type="button" class="modal__close-btn" data-close-modal aria-label="Close modal">&times;</button>
+      </div>
+      <form id="addExperimentForm" class="modal__form" novalidate>
+        <div class="form-row">
+          <div class="form-group form-group--small">
+            <label for="expNumberInput">Experiment Number <span class="required">*</span></label>
+            <input type="text" id="expNumberInput" name="experiment_no" placeholder="1" required maxlength="10">
+            <span class="field-error" id="err-exp-num"></span>
+          </div>
+          <div class="form-group form-group--large">
+            <label for="expTitleInput">Experiment Name <span class="required">*</span></label>
+            <input type="text" id="expTitleInput" name="title" placeholder="ALU Design & Circuit Simulation" required maxlength="150">
+            <span class="field-error" id="err-exp-title"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="expShortDescInput">Short Description (D1) <span class="required">*</span></label>
+          <textarea id="expShortDescInput" name="short_description" rows="2" placeholder="Brief one or two lines shown on the experiment card..." required maxlength="350"></textarea>
+          <span class="field-error" id="err-exp-desc"></span>
+        </div>
+
+        <!-- Cover Image Upload -->
+        <div class="form-group">
+          <label>Main Cover Page <span class="required">*</span></label>
+          <div class="upload-dropzone" id="coverDropzone">
+            <input type="file" id="coverImageInput" name="cover_image" accept=".jpg,.jpeg,.png,.webp" hidden>
+            <div class="upload-preview" id="coverPreviewContainer" hidden>
+              <img id="coverPreviewImg" src="" alt="Cover preview">
+              <button type="button" class="btn-remove-file" id="removeCoverBtn" title="Remove cover image">&times;</button>
+            </div>
+            <div class="upload-prompt" id="coverPrompt">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="30" height="30" stroke-width="1.8">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+              <span>Click to select cover image (JPG, PNG, WEBP)</span>
+              <small class="upload-hint">Recommended aspect ratio: 4:3</small>
+            </div>
+          </div>
+          <span class="field-error" id="err-exp-cover"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="expD2HeadingInput">D2 Heading</label>
+          <input type="text" id="expD2HeadingInput" name="d2_heading" placeholder="Long Description (or Aim & Procedure)" maxlength="100">
+        </div>
+
+        <div class="form-group">
+          <label for="expLongContentInput">D2 Long Content <span class="required">*</span></label>
+          <small class="label-desc">Write complete details: Aim, Procedure, Explanation, Observations, Output, Conclusion.</small>
+          <textarea id="expLongContentInput" name="long_content" rows="9" placeholder="AIM:&#10;To perform...&#10;&#10;PROCEDURE:&#10;1. Step one...&#10;2. Step two...&#10;&#10;OBSERVATIONS & OUTPUT:&#10;...&#10;&#10;CONCLUSION:&#10;..." required></textarea>
+          <span class="field-error" id="err-exp-content"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="expGithubInput">GitHub Link <span class="optional">(Optional)</span></label>
+          <input type="url" id="expGithubInput" name="github_url" placeholder="https://github.com/shanmukhi-06/ds-lab-exp1">
+        </div>
+
+        <!-- Video Upload (Optional) -->
+        <div class="form-group">
+          <label>Video <span class="optional">(Optional short clip)</span></label>
+          <div class="video-upload-box">
+            <input type="file" id="videoInput" name="video" accept=".mp4,.webm,.mov" hidden>
+            <button type="button" class="btn btn--secondary btn--sm" id="chooseVideoBtn">Choose Video File</button>
+            <span class="video-file-name" id="videoFileName">No video selected (MP4, WebM, MOV)</span>
+            <button type="button" class="btn-text-danger" id="removeVideoBtn" hidden>Remove</button>
+          </div>
+        </div>
+
+        <div class="modal__footer">
+          <button type="button" class="btn btn--secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn--primary" id="submitExpBtn">Add Experiment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. ADD MODULE MODAL -->
+  <div class="modal" id="addModuleModal" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="addModModalTitle">
+      <div class="modal__header">
+        <h2 id="addModModalTitle" class="modal__title">Add Module</h2>
+        <button type="button" class="modal__close-btn" data-close-modal aria-label="Close modal">&times;</button>
+      </div>
+      <form id="addModuleForm" class="modal__form" novalidate>
+        <div class="form-group">
+          <label for="modNumberInput">Module Number <span class="required">*</span></label>
+          <input type="text" id="modNumberInput" name="module_no" placeholder="5" required maxlength="10">
+        </div>
+        <div class="form-group">
+          <label for="modTitleInput">Module Title <span class="required">*</span></label>
+          <input type="text" id="modTitleInput" name="title" placeholder="Module 5: Deep Learning &amp; Neural Networks" required maxlength="150">
+        </div>
+        <div class="form-group">
+          <label for="modDescInput">Description <span class="required">*</span></label>
+          <textarea id="modDescInput" name="description" rows="3" placeholder="Summary of topics covered..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="modTopicsInput">Topics / Syllabus</label>
+          <input type="text" id="modTopicsInput" name="topics" placeholder="TensorFlow, PyTorch, Convolutional Networks, Transformers">
+        </div>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn--primary" id="submitModBtn">Add Module</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. ADD TOOL MODAL -->
+  <div class="modal" id="addToolModal" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="addToolModalTitle">
+      <div class="modal__header">
+        <h2 id="addToolModalTitle" class="modal__title">Add Tool</h2>
+        <button type="button" class="modal__close-btn" data-close-modal aria-label="Close modal">&times;</button>
+      </div>
+      <form id="addToolForm" class="modal__form" novalidate>
+        <div class="form-group">
+          <label for="toolNameInput">Tool Name <span class="required">*</span></label>
+          <input type="text" id="toolNameInput" name="name" placeholder="Logisim Evolution" required maxlength="100">
+        </div>
+        <div class="form-group">
+          <label for="toolCategoryInput">Category <span class="required">*</span></label>
+          <input type="text" id="toolCategoryInput" name="category" placeholder="Hardware Simulator / IDE" required maxlength="60">
+        </div>
+        <div class="form-group">
+          <label for="toolDescInput">Description <span class="required">*</span></label>
+          <textarea id="toolDescInput" name="description" rows="3" placeholder="How this tool is used in the laboratory..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="toolUrlInput">Download / Web Link</label>
+          <input type="url" id="toolUrlInput" name="tool_url" placeholder="https://example.com/tool">
+        </div>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn--primary" id="submitToolBtn">Add Tool</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. ADD RESOURCE MODAL -->
+  <div class="modal" id="addResourceModal" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="addResModalTitle">
+      <div class="modal__header">
+        <h2 id="addResModalTitle" class="modal__title">Add Resource</h2>
+        <button type="button" class="modal__close-btn" data-close-modal aria-label="Close modal">&times;</button>
+      </div>
+      <form id="addResourceForm" class="modal__form" novalidate>
+        <div class="form-group">
+          <label for="resTitleInput">Resource Title <span class="required">*</span></label>
+          <input type="text" id="resTitleInput" name="title" placeholder="Computer System Architecture (M. Morris Mano)" required maxlength="150">
+        </div>
+        <div class="form-group">
+          <label for="resCategoryInput">Category <span class="required">*</span></label>
+          <input type="text" id="resCategoryInput" name="category" placeholder="Textbook / Lab Manual / Notes" required maxlength="60">
+        </div>
+        <div class="form-group">
+          <label for="resDescInput">Description <span class="required">*</span></label>
+          <textarea id="resDescInput" name="description" rows="3" placeholder="Overview of resource contents..." required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="resUrlInput">Resource URL / Link</label>
+          <input type="url" id="resUrlInput" name="link_url" placeholder="https://example.com/reference.pdf">
+        </div>
+        <div class="modal__footer">
+          <button type="button" class="btn btn--secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn--primary" id="submitResBtn">Add Resource</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. EXPERIMENT DETAILS MODAL (READ MORE) -->
+  <div class="modal" id="detailsModal" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog modal__dialog--detail" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+      <div class="detail-header">
+        <button type="button" class="btn btn--ghost detail-back-btn" data-close-modal>&larr; Back to Experiments</button>
+        <span class="detail-portal-tag">DATA SCIENCE LAB RECORD</span>
+        <button type="button" class="modal__close-btn" data-close-modal aria-label="Close dialog">&times;</button>
+      </div>
+
+      <div class="detail-grid">
+        <!-- Left Panel: Summary, Cover, Media, Actions -->
+        <div class="detail-left">
+          <span class="detail-badge" id="detailExpNo">Experiment 1</span>
+          <h2 class="detail-title" id="detailTitle">Experiment Title</h2>
+          <p class="detail-desc" id="detailDesc">Short description will appear here.</p>
+
+          <div class="detail-cover-box" id="detailCoverBox">
+            <img id="detailCoverImg" src="" alt="Experiment cover">
+          </div>
+
+          <div class="detail-video-wrapper" id="detailVideoWrapper" hidden>
+            <h4 class="detail-subhead">Demonstration Video</h4>
+            <video id="detailVideoPlayer" class="detail-video" controls preload="metadata">
+              Your browser does not support HTML5 video.
+            </video>
+          </div>
+
+          <div class="detail-actions">
+            <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn--github" id="detailGithubLink" hidden>
+              <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Panel: Full Content (D2) -->
+        <div class="detail-right">
+          <div class="detail-content-card">
+            <h3 class="detail-d2-head" id="detailD2Heading">Long Description</h3>
+            <div class="detail-body-text" id="detailLongContent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. EDIT ID CARD MODAL -->
+  <div class="modal" id="editProfileModal" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="editProfileTitle">
+      <div class="modal__header">
+        <h2 id="editProfileTitle" class="modal__title">Edit Student ID Card</h2>
+        <button type="button" class="modal__close-btn" data-close-modal aria-label="Close modal">&times;</button>
+      </div>
+      <form id="editProfileForm" class="modal__form" novalidate>
+        
+        <div class="form-group">
+          <label>Photo</label>
+          <div class="profile-photo-edit-row">
+            <img id="editPhotoPreview" src="/static/images/shanmukhi-profile.png" alt="Photo preview" class="profile-preview-thumb">
+            <div class="photo-edit-buttons">
+              <label for="profilePhotoInput" class="btn btn--secondary btn--sm">Choose Photo</label>
+              <input type="file" id="profilePhotoInput" name="photo" accept=".jpg,.jpeg,.png,.webp" hidden>
+              <small class="field-hint">JPG, PNG, or WEBP (Passport crop)</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="profNameInput">Name <span class="required">*</span></label>
+            <input type="text" id="profNameInput" name="name" value="Shanmukhi" required maxlength="80">
+          </div>
+          <div class="form-group">
+            <label for="profRollInput">Roll Number <span class="required">*</span></label>
+            <input type="text" id="profRollInput" name="roll_no" value="24102A030132" required maxlength="40">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="profDeptInput">Department (Dept)</label>
+            <input type="text" id="profDeptInput" name="branch" value="Data Science" maxlength="60">
+          </div>
+          <div class="form-group">
+            <label for="profSectionInput">Section (Sec)</label>
+            <input type="text" id="profSectionInput" name="section" value="DS-3" maxlength="20">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="profSubInput">Subject (Sub) <span class="required">*</span></label>
+            <input type="text" id="profSubInput" name="subject" value="Data Science" required maxlength="50" placeholder="Data Science">
+          </div>
+          <div class="form-group">
+            <label for="profFacultyInput">Faculty In-Charge</label>
+            <input type="text" id="profFacultyInput" name="faculty" value="Faculty In-Charge" maxlength="80">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="profGithubInput">GitHub Account / URL</label>
+          <input type="text" id="profGithubInput" name="github_url" value="https://github.com/shanmukhi-06" placeholder="https://github.com/shanmukhi-06">
+        </div>
+
+        <div class="form-group">
+          <label for="profWebsiteInput">Personal Website (Web)</label>
+          <input type="url" id="profWebsiteInput" name="website_url" placeholder="https://example.com">
+        </div>
+
+        <div class="modal__footer">
+          <button type="button" class="btn btn--secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn--primary" id="saveProfileBtn">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 7. DELETE CONFIRMATION MODAL -->
+  <div class="modal" id="deleteConfirmModal" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog modal__dialog--confirm" role="dialog" aria-modal="true" aria-labelledby="delModalTitle">
+      <div class="modal__header">
+        <h2 id="delModalTitle" class="modal__title">Confirm Delete</h2>
+        <button type="button" class="modal__close-btn" data-close-modal aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal__body-confirm">
+        <p class="confirm-message">Are you sure you want to delete this record?</p>
+        <p class="confirm-subtext" id="deleteExperimentTargetTitle">This action cannot be undone.</p>
+      </div>
+      <div class="modal__footer">
+        <button type="button" class="btn btn--secondary" data-close-modal>Cancel</button>
+        <button type="button" class="btn btn--danger" id="confirmDeleteBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Message -->
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
