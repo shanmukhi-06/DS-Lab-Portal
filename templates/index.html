@@ -213,7 +213,21 @@
   <!-- ==================== MAIN CONTENT SECTIONS ==================== -->
   <main class="container main-content">
 
-    <!-- ================= SECTION 1: LAB EXPERIMENTS (Lab Exp) ================= -->
+    <!-- ================= SECTION 1: MODULES ================= -->
+    <section class="content-section" id="section-modules" aria-labelledby="modulesHeading">
+      <div class="section-top">
+        <div>
+          <span class="section-kicker">Curriculum &bull; Data Science</span>
+          <h2 class="section-title" id="modulesHeading">Modules</h2>
+        </div>
+        <button type="button" class="btn btn--primary" id="openAddModuleModalBtn">+ Add Module</button>
+      </div>
+      <p class="section-desc">Interactive curriculum modules with realistic 3D book-flipping reader, downloadable official PDFs, and curated YouTube video lectures.</p>
+      
+      <div id="modulesGrid" class="modules-grid" aria-live="polite"></div>
+    </section>
+
+    <!-- ================= SECTION 2: LAB EXPERIMENTS (Lab Exp) ================= -->
     <section class="content-section" id="section-labexp" aria-labelledby="labExpHeading">
       <div class="section-top">
         <div>
@@ -248,19 +262,7 @@
       </div>
     </section>
 
-    <!-- ================= SECTION 2: MODULES ================= -->
-    <section class="content-section" id="section-modules" aria-labelledby="modulesHeading">
-      <div class="section-top">
-        <div>
-          <span class="section-kicker">Curriculum &bull; Data Science</span>
-          <h2 class="section-title" id="modulesHeading">Modules</h2>
-        </div>
-        <button type="button" class="btn btn--primary" id="openAddModuleModalBtn">+ Add Module</button>
-      </div>
-      <p class="section-desc">Structured learning modules covering Python computing, exploratory data analysis, statistical modeling, and machine learning pipelines.</p>
-      
-      <div id="modulesGrid" class="modules-grid" aria-live="polite"></div>
-    </section>
+    
 
     <!-- ================= SECTION 3: TOOLS ================= -->
     <section class="content-section" id="section-tools" aria-labelledby="toolsHeading">
@@ -705,10 +707,34 @@
           <span class="flipbook-pill" id="bookModalModuleBadge">UNIT 1</span>
           <h2 id="bookModalModuleTitle" class="flipbook-title">Module Title</h2>
         </div>
+        
+        <div class="flipbook-view-toggle">
+          <button type="button" class="view-toggle-btn active" id="bookFlipViewBtn" title="3D Flip Book View">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <span>Flip Book</span>
+          </button>
+          <button type="button" class="view-toggle-btn" id="bookPdfViewBtn" title="Embedded PDF Document">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+              <path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v4zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zm5 2h1v-3h-1v3zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6z"/>
+            </svg>
+            <span>Read PDF</span>
+          </button>
+        </div>
+
         <div class="flipbook-topbar__center">
           <span class="flipbook-page-indicator" id="bookPageIndicator">Pages 1-2 of 7</span>
         </div>
+
         <div class="flipbook-topbar__right">
+          <a href="#" id="bookDirectPdfLink" target="_blank" rel="noopener noreferrer" class="btn btn--sm btn--danger-light" title="Open Official PDF in New Tab">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor">
+              <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+            </svg>
+            <span>Open PDF</span>
+          </a>
           <button type="button" class="btn btn--sm btn--outline" id="bookTocToggleBtn" title="Table of Contents">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -739,6 +765,8 @@
         <!-- Open Book 3D Container -->
         <div class="open-book-container" id="openBookContainer">
           <div class="book-cover-back"></div>
+          
+          <!-- Mode A: 3D Flip Book -->
           <div class="open-book" id="openBook">
             <!-- Left Page Sheet -->
             <div class="page-sheet page-sheet--left" id="leftPageSheet" title="Click to flip backward">
@@ -777,6 +805,20 @@
               </div>
             </div>
           </div>
+
+          <!-- Mode B: Embedded PDF Reader Container -->
+          <div class="book-pdf-container" id="bookPdfContainer" hidden>
+            <div class="pdf-container-bar">
+              <span id="pdfViewerTitle">Official PDF Document</span>
+              <a href="#" id="pdfDownloadBtn" download class="btn btn--sm btn--primary">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                </svg>
+                <span>Download PDF</span>
+              </a>
+            </div>
+            <iframe id="bookPdfIframe" class="pdf-iframe-frame" src="" title="Module PDF Viewer"></iframe>
+          </div>
         </div>
 
         <!-- Next Button -->
@@ -806,7 +848,7 @@
       </div>
 
       <!-- Bottom Book Controls -->
-      <div class="flipbook-bottombar">
+      <div class="flipbook-bottombar" id="flipbookBottombar">
         <div class="flipbook-progress-wrap">
           <span class="progress-lbl">Page Navigation:</span>
           <input type="range" class="flipbook-range" id="bookPageSlider" min="1" max="7" value="1" step="1">
@@ -819,8 +861,7 @@
 
     </div>
   </div>
-
-  <!-- 10. YOUTUBE VIDEO PLAYER MODAL -->
+<!-- 10. YOUTUBE VIDEO PLAYER MODAL -->
   <div class="modal" id="youtubePlayerModal" hidden>
     <div class="modal__backdrop" data-close-modal></div>
     <div class="modal__dialog modal__dialog--video" role="dialog" aria-modal="true" aria-labelledby="ytVideoModalTitle">
@@ -847,6 +888,25 @@
             <button type="button" class="btn btn--secondary btn--sm" data-close-modal>Back to Portal</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 11. DEDICATED MODULE VIDEOS MODAL -->
+  <div class="modal" id="moduleVideosModal" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog modal__dialog--wide" role="dialog" aria-modal="true" aria-labelledby="modVideosModalTitle">
+      <div class="modal__header">
+        <div>
+          <span class="video-modal-channel" id="modVideosModalBadge">UNIT 1</span>
+          <h2 id="modVideosModalTitle" class="modal__title">Curated YouTube Video Lectures</h2>
+          <p class="modal__subtitle">Click any lecture to open on YouTube or watch embedded</p>
+        </div>
+        <button type="button" class="modal__close-btn" data-close-modal aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal__body" id="moduleVideosModalBody" style="padding: 20px; max-height: 70vh; overflow-y: auto;">
+        <!-- Injected via JS -->
       </div>
     </div>
   </div>

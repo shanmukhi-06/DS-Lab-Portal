@@ -160,6 +160,9 @@ def init_db():
                 title VARCHAR(255) NOT NULL,
                 description TEXT NOT NULL,
                 topics TEXT NOT NULL,
+                pdf_url VARCHAR(255) DEFAULT '',
+                youtube_links LONGTEXT,
+                pages_json LONGTEXT,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
         """)
@@ -200,9 +203,23 @@ def init_db():
         if cursor.fetchone()["cnt"] == 0:
             _seed_sample_experiments(conn, is_mysql=True)
 
+        try:
+            cursor.execute("SHOW COLUMNS FROM modules LIKE 'pdf_url'")
+            if not cursor.fetchone():
+                cursor.execute("ALTER TABLE modules ADD COLUMN pdf_url VARCHAR(255) DEFAULT ''")
+            cursor.execute("SHOW COLUMNS FROM modules LIKE 'youtube_links'")
+            if not cursor.fetchone():
+                cursor.execute("ALTER TABLE modules ADD COLUMN youtube_links LONGTEXT")
+            cursor.execute("SHOW COLUMNS FROM modules LIKE 'pages_json'")
+            if not cursor.fetchone():
+                cursor.execute("ALTER TABLE modules ADD COLUMN pages_json LONGTEXT")
+        except Exception as _e:
+            pass
         cursor.execute("SELECT COUNT(*) AS cnt FROM modules")
         if cursor.fetchone()["cnt"] == 0:
             _seed_modules(conn, is_mysql=True)
+        else:
+            _sync_modules(conn, is_mysql=True)
 
         cursor.execute("SELECT COUNT(*) AS cnt FROM tools")
         if cursor.fetchone()["cnt"] == 0:
@@ -278,6 +295,7 @@ def init_db():
                 title TEXT NOT NULL,
                 description TEXT NOT NULL,
                 topics TEXT NOT NULL,
+                pdf_url TEXT DEFAULT '',
                 youtube_links TEXT DEFAULT '[]',
                 pages_json TEXT DEFAULT '[]',
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -329,9 +347,21 @@ def init_db():
         if cursor.fetchone()[0] == 0:
             _seed_sample_experiments(conn, is_mysql=False)
 
+        cursor.execute("PRAGMA table_info(modules)")
+        mod_cols = [col[1] for col in cursor.fetchall()]
+        if "youtube_links" not in mod_cols:
+            cursor.execute("ALTER TABLE modules ADD COLUMN youtube_links TEXT DEFAULT '[]'")
+        if "pages_json" not in mod_cols:
+            cursor.execute("ALTER TABLE modules ADD COLUMN pages_json TEXT DEFAULT '[]'")
+        if "pdf_url" not in mod_cols:
+            cursor.execute("ALTER TABLE modules ADD COLUMN pdf_url TEXT DEFAULT ''")
+        conn.commit()
+
         cursor.execute("SELECT COUNT(*) FROM modules")
         if cursor.fetchone()[0] == 0:
             _seed_modules(conn, is_mysql=False)
+        else:
+            _sync_modules(conn, is_mysql=False)
 
         cursor.execute("SELECT COUNT(*) FROM tools")
         if cursor.fetchone()[0] == 0:
@@ -462,6 +492,40 @@ Supervised classification model trained, tuned, and validated with complete eval
         conn.commit()
 
 
+def _sync_modules(conn, is_mysql=False):
+    """Update existing modules with latest PDF paths, YouTube links, and flipbook pages."""
+    cursor = conn.cursor()
+    json_path = os.path.join(os.path.dirname(__file__), "data", "modules_data.json")
+    if os.path.exists(json_path):
+        try:
+            with open(json_path, "r", encoding="utf-8") as f:
+                modules_data = json.load(f)
+            for mod in modules_data:
+                m_no = str(mod["module_no"])
+                pdf = mod.get("pdf_url", "")
+                yt = json.dumps(mod.get("youtube_links", []))
+                pgs = json.dumps(mod.get("pages", []))
+                desc = mod.get("description", "")
+                title = mod.get("title", "")
+                topics = mod.get("topics", "")
+                if is_mysql:
+                    cursor.execute("""
+                        UPDATE modules
+                        SET title=%s, description=%s, topics=%s, pdf_url=%s, youtube_links=%s, pages_json=%s
+                        WHERE module_no=%s
+                    """, (title, desc, topics, pdf, yt, pgs, m_no))
+                else:
+                    cursor.execute("""
+                        UPDATE modules
+                        SET title=?, description=?, topics=?, pdf_url=?, youtube_links=?, pages_json=?
+                        WHERE module_no=?
+                    """, (title, desc, topics, pdf, yt, pgs, m_no))
+            if not is_mysql:
+                conn.commit()
+        except Exception as e:
+            logger.warning(f"Module sync error: {e}")
+
+
 def _seed_modules(conn, is_mysql=False):
     cursor = conn.cursor()
     json_path = os.path.join(os.path.dirname(__file__), "data", "modules_data.json")
@@ -474,18 +538,19 @@ def _seed_modules(conn, is_mysql=False):
                 mod["title"],
                 mod["description"],
                 mod["topics"],
+                mod.get("pdf_url", ""),
                 json.dumps(mod.get("youtube_links", [])),
                 json.dumps(mod.get("pages", []))
             )
             if is_mysql:
                 cursor.execute("""
-                    INSERT INTO modules (module_no, title, description, topics, youtube_links, pages_json)
-                    VALUES (%s, %s, %s, %s, %s, %s)
+                    INSERT INTO modules (module_no, title, description, topics, pdf_url, youtube_links, pages_json)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
                 """, params)
             else:
                 cursor.execute("""
-                    INSERT INTO modules (module_no, title, description, topics, youtube_links, pages_json)
-                    VALUES (?, ?, ?, ?, ?, ?)
+                    INSERT INTO modules (module_no, title, description, topics, pdf_url, youtube_links, pages_json)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
                 """, params)
         if not is_mysql:
             conn.commit()

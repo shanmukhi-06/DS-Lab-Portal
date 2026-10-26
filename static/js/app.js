@@ -335,6 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const videos = Array.isArray(mod.youtube_links) ? mod.youtube_links : [];
       const pageCount = pages.length || 7;
       const videoCount = videos.length || 5;
+      const pdfUrl = mod.pdf_url || `/static/docs/Module-${mod.module_no}-Data-Science-Foundations.pdf`;
 
       const topicList = (mod.topics || '').split(',').map(t => t.trim()).filter(Boolean);
       const topicPillsHtml = topicList.slice(0, 5).map(t => `<span class="topic-pill">${escapeHtml(t)}</span>`).join('');
@@ -347,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <button type="button" class="btn-text-danger" data-action="delete-mod" data-id="${mod.id}" title="Delete module">&times;</button>
           </div>
         </div>
-        <h3 class="module-title">${escapeHtml(mod.title)}</h3>
+        <h3 class="module-title" style="cursor:pointer;" title="Click to open module">${escapeHtml(mod.title)}</h3>
         <p class="module-desc">${escapeHtml(mod.description)}</p>
         ${topicPillsHtml ? `
           <div class="module-topics-box">
@@ -356,12 +357,18 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         ` : ''}
         <div class="module-actions-bar">
+          <a href="${pdfUrl}" target="_blank" rel="noopener noreferrer" class="btn btn--sm open-pdf-direct-btn" data-id="${mod.id}" title="Open Official Module PDF Document">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v4zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zm5 2h1v-3h-1v3zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6z"/>
+            </svg>
+            <span>Open PDF</span>
+          </a>
           <button type="button" class="btn btn--primary btn--sm open-book-btn" data-id="${mod.id}">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
               <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
             </svg>
-            <span>Read Module (Flip Book)</span>
+            <span>Flip Book (Reader)</span>
           </button>
           <button type="button" class="btn btn--youtube btn--sm open-videos-btn" data-id="${mod.id}">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
@@ -529,11 +536,17 @@ document.addEventListener('DOMContentLoaded', () => {
         openModuleBook(modId, 1);
         return;
       }
+      const titleClick = e.target.closest('.module-title');
+      if (titleClick) {
+        const card = titleClick.closest('.module-card');
+        const modId = parseInt(card.getAttribute('data-module-id'), 10);
+        openModuleBook(modId, 1);
+        return;
+      }
       const openVideosBtn = e.target.closest('.open-videos-btn');
       if (openVideosBtn) {
         const modId = parseInt(openVideosBtn.getAttribute('data-id'), 10);
-        openModuleBook(modId, 1);
-        setTimeout(toggleVideosDrawer, 100);
+        openModuleVideosModal(modId);
         return;
       }
     });
@@ -541,8 +554,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Flipbook controls
     if (bookPrevBtn) bookPrevBtn.addEventListener('click', flipPrevSpread);
     if (bookNextBtn) bookNextBtn.addEventListener('click', flipNextSpread);
-    if (leftPageSheet) leftPageSheet.addEventListener('click', flipPrevSpread);
-    if (rightPageSheet) rightPageSheet.addEventListener('click', flipNextSpread);
+    if (leftPageSheet) leftPageSheet.addEventListener('click', (e) => {
+      if (e.target.closest('a, button, input, select, textarea, .video-ref-link, .video-ref-card')) return;
+      flipPrevSpread();
+    });
+    if (rightPageSheet) rightPageSheet.addEventListener('click', (e) => {
+      if (e.target.closest('a, button, input, select, textarea, .video-ref-link, .video-ref-card')) return;
+      flipNextSpread();
+    });
     if (bookTocToggleBtn) bookTocToggleBtn.addEventListener('click', toggleTocDrawer);
     if (closeTocDrawerBtn) closeTocDrawerBtn.addEventListener('click', toggleTocDrawer);
     if (bookVideosToggleBtn) bookVideosToggleBtn.addEventListener('click', toggleVideosDrawer);
@@ -1047,3 +1066,101 @@ document.addEventListener('DOMContentLoaded', () => {
   // Launch
   init();
 });
+
+  // Mode toggle: Flip Book vs Embedded PDF View
+  const bookFlipViewBtn = document.getElementById('bookFlipViewBtn');
+  const bookPdfViewBtn = document.getElementById('bookPdfViewBtn');
+  const openBookEl = document.getElementById('openBook');
+  const bookPdfContainer = document.getElementById('bookPdfContainer');
+  const bookPdfIframe = document.getElementById('bookPdfIframe');
+  const bookDirectPdfLink = document.getElementById('bookDirectPdfLink');
+  const pdfExternalLinkBtn = document.getElementById('pdfExternalLinkBtn');
+  const pdfDownloadBtn = document.getElementById('pdfDownloadBtn');
+  const pdfViewerTitle = document.getElementById('pdfViewerTitle');
+  const flipbookBottombar = document.getElementById('flipbookBottombar');
+
+  const moduleVideosModal = document.getElementById('moduleVideosModal');
+  const modVideosModalBadge = document.getElementById('modVideosModalBadge');
+  const modVideosModalTitle = document.getElementById('modVideosModalTitle');
+  const moduleVideosModalBody = document.getElementById('moduleVideosModalBody');
+
+  function setBookViewMode(mode) {
+    if (mode === 'pdf') {
+      if (openBookEl) openBookEl.hidden = true;
+      if (bookPdfContainer) bookPdfContainer.hidden = false;
+      if (bookFlipViewBtn) bookFlipViewBtn.classList.remove('active');
+      if (bookPdfViewBtn) bookPdfViewBtn.classList.add('active');
+      if (flipbookBottombar) flipbookBottombar.style.opacity = '0.3';
+      if (currentBookModule && bookPdfIframe) {
+        const pdfUrl = currentBookModule.pdf_url || `/static/docs/Module-${currentBookModule.module_no}-Data-Science-Foundations.pdf`;
+        bookPdfIframe.src = pdfUrl;
+      }
+    } else {
+      if (openBookEl) openBookEl.hidden = false;
+      if (bookPdfContainer) bookPdfContainer.hidden = true;
+      if (bookFlipViewBtn) bookFlipViewBtn.classList.add('active');
+      if (bookPdfViewBtn) bookPdfViewBtn.classList.remove('active');
+      if (flipbookBottombar) flipbookBottombar.style.opacity = '1';
+    }
+  }
+
+  if (bookFlipViewBtn) bookFlipViewBtn.addEventListener('click', () => setBookViewMode('book'));
+  if (bookPdfViewBtn) bookPdfViewBtn.addEventListener('click', () => setBookViewMode('pdf'));
+
+  function openModuleVideosModal(moduleId) {
+    const mod = allModules.find((m) => m.id === moduleId);
+    if (!mod) {
+      showToast('Module not found', 'error');
+      return;
+    }
+
+    const videos = Array.isArray(mod.youtube_links) ? mod.youtube_links : [];
+    modVideosModalBadge.textContent = `UNIT ${mod.module_no}`;
+    modVideosModalTitle.textContent = `${mod.title} • Video Lectures`;
+
+    if (videos.length === 0) {
+      moduleVideosModalBody.innerHTML = `<p style="color:var(--muted);font-style:italic;">No video lectures linked for this module.</p>`;
+    } else {
+      moduleVideosModalBody.innerHTML = videos.map((v) => `
+        <div class="video-item-row">
+          <div class="video-item-left">
+            <div class="video-yt-badge">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+              </svg>
+            </div>
+            <div class="video-item-details">
+              <h4>${escapeHtml(v.title)}</h4>
+              <div class="video-item-meta">${escapeHtml(v.channel || 'YouTube')} &bull; ${escapeHtml(v.duration || '')}</div>
+              <p class="video-item-desc">${escapeHtml(v.desc || '')}</p>
+            </div>
+          </div>
+          <div class="video-item-actions">
+            <a href="${escapeHtml(v.url)}" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm" style="display:inline-flex;align-items:center;gap:4px;">
+              <span>Watch on YouTube</span>
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+              </svg>
+            </a>
+            <button type="button" class="btn btn--secondary btn--sm play-in-portal-btn" data-yt-id="${escapeHtml(v.id || '')}" data-yt-url="${escapeHtml(v.url || '')}" data-title="${escapeHtml(v.title)}" data-channel="${escapeHtml(v.channel || '')}" data-desc="${escapeHtml(v.desc || '')}">
+              Play in Portal
+            </button>
+          </div>
+        </div>
+      `).join('');
+
+      moduleVideosModalBody.querySelectorAll('.play-in-portal-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          openYoutubePlayerModal({
+            id: btn.getAttribute('data-yt-id'),
+            url: btn.getAttribute('data-yt-url'),
+            title: btn.getAttribute('data-title'),
+            channel: btn.getAttribute('data-channel'),
+            desc: btn.getAttribute('data-desc')
+          });
+        });
+      });
+    }
+
+    openModal(moduleVideosModal);
+  }

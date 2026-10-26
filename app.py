@@ -66,6 +66,16 @@ def serve_uploads(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
 
 
+@app.route('/static/docs/<path:filename>')
+def serve_docs(filename):
+    docs_dir = os.path.join(BASE_DIR, 'static', 'docs')
+    response = send_from_directory(docs_dir, filename)
+    response.headers['Content-Disposition'] = 'inline'
+    if filename.lower().endswith('.pdf'):
+        response.headers['Content-Type'] = 'application/pdf'
+    return response
+
+
 # Overview statistics
 @app.route('/api/counts', methods=['GET'])
 def get_counts_api():
