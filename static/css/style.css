@@ -3052,19 +3052,24 @@ a:hover {
 }
 
 .open-pdf-direct-btn {
-  background: #dc2626 !important;
+  background: var(--primary, #1d4ed8) !important;
   color: #ffffff !important;
-  border-color: #dc2626 !important;
+  border-color: var(--primary, #1d4ed8) !important;
   font-weight: 600 !important;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   text-decoration: none !important;
+  box-shadow: 0 2px 6px rgba(29, 78, 216, 0.25);
+  transition: all 0.2s ease;
 }
 
 .open-pdf-direct-btn:hover {
-  background: #b91c1c !important;
-  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.35);
+  background: var(--primary-dark, #1e40af) !important;
+  border-color: var(--primary-dark, #1e40af) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(29, 78, 216, 0.35);
+  transform: translateY(-1px);
 }
 
 /* Video Modal Cards */

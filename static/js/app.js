@@ -357,19 +357,12 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         ` : ''}
         <div class="module-actions-bar">
-          <a href="${pdfUrl}" target="_blank" rel="noopener noreferrer" class="btn btn--sm open-pdf-direct-btn" data-id="${mod.id}" title="Open Official Module PDF Document">
+          <a href="${pdfUrl}" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm open-pdf-direct-btn" data-id="${mod.id}" title="Read Module PDF Document">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
               <path d="M20 2H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-8.5 7.5c0 .83-.67 1.5-1.5 1.5H9v2H7.5V7H10c.83 0 1.5.67 1.5 1.5v1zm5 2c0 .83-.67 1.5-1.5 1.5h-2.5V7H15c.83 0 1.5.67 1.5 1.5v4zm4-3H19v1h1.5V11H19v2h-1.5V7h3v1.5zM9 9.5h1v-1H9v1zm5 2h1v-3h-1v3zM4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6z"/>
             </svg>
-            <span>Open PDF</span>
+            <span>Read Module (PDF)</span>
           </a>
-          <button type="button" class="btn btn--primary btn--sm open-book-btn" data-id="${mod.id}">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-            </svg>
-            <span>Flip Book (Reader)</span>
-          </button>
           <button type="button" class="btn btn--youtube btn--sm open-videos-btn" data-id="${mod.id}">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
               <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
