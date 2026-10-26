@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import json
 import logging
 from dotenv import load_dotenv
 
@@ -236,7 +237,9 @@ def init_db():
             ("subject", "TEXT DEFAULT 'Data Science'"),
             ("faculty", "TEXT DEFAULT 'Faculty In-Charge'"),
             ("linkedin_url", "TEXT DEFAULT ''"),
-            ("website_url", "TEXT DEFAULT ''")
+            ("website_url", "TEXT DEFAULT ''"),
+            ("youtube_links", "TEXT DEFAULT '[]'"),
+            ("pages_json", "TEXT DEFAULT '[]'")
         ]:
             try:
                 cursor.execute(f"ALTER TABLE student ADD COLUMN {col_name} {col_type};")
@@ -275,6 +278,8 @@ def init_db():
                 title TEXT NOT NULL,
                 description TEXT NOT NULL,
                 topics TEXT NOT NULL,
+                youtube_links TEXT DEFAULT '[]',
+                pages_json TEXT DEFAULT '[]',
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
@@ -459,33 +464,31 @@ Supervised classification model trained, tuned, and validated with complete eval
 
 def _seed_modules(conn, is_mysql=False):
     cursor = conn.cursor()
-    modules_data = [
-        ("1", "Module 1: Python for Data Science & Numerical Computing", 
-         "Fundamental Python data structures, NumPy arrays, vectorized calculations, and scientific computing foundations.",
-         "Python Basics, NumPy Arrays, Vectorization, Matrix Algebra"),
-        ("2", "Module 2: Data Cleaning, Preprocessing & EDA", 
-         "Techniques for handling missing values, outlier detection, data normalization, and Exploratory Data Analysis.",
-         "Pandas DataFrames, Data Cleaning, Missing Data Imputation, Distribution Analysis"),
-        ("3", "Module 3: Statistical Inference & Data Visualization", 
-         "Descriptive statistics, hypothesis testing, probability distributions, and visual analytics using Matplotlib & Seaborn.",
-         "Histograms, Correlation Heatmaps, Box Plots, Hypothesis Testing"),
-        ("4", "Module 4: Machine Learning & Predictive Modeling", 
-         "Supervised and unsupervised learning algorithms including linear regression, classification trees, and clustering.",
-         "Scikit-Learn, Regression, Decision Trees, Model Evaluation, Cross Validation")
-    ]
-    for mod in modules_data:
-        if is_mysql:
-            cursor.execute("""
-                INSERT INTO modules (module_no, title, description, topics)
-                VALUES (%s, %s, %s, %s)
-            """, mod)
-        else:
-            cursor.execute("""
-                INSERT INTO modules (module_no, title, description, topics)
-                VALUES (?, ?, ?, ?)
-            """, mod)
-    if not is_mysql:
-        conn.commit()
+    json_path = os.path.join(os.path.dirname(__file__), "data", "modules_data.json")
+    if os.path.exists(json_path):
+        with open(json_path, "r", encoding="utf-8") as f:
+            modules_data = json.load(f)
+        for mod in modules_data:
+            params = (
+                mod["module_no"],
+                mod["title"],
+                mod["description"],
+                mod["topics"],
+                json.dumps(mod.get("youtube_links", [])),
+                json.dumps(mod.get("pages", []))
+            )
+            if is_mysql:
+                cursor.execute("""
+                    INSERT INTO modules (module_no, title, description, topics, youtube_links, pages_json)
+                    VALUES (%s, %s, %s, %s, %s, %s)
+                """, params)
+            else:
+                cursor.execute("""
+                    INSERT INTO modules (module_no, title, description, topics, youtube_links, pages_json)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                """, params)
+        if not is_mysql:
+            conn.commit()
 
 
 def _seed_tools(conn, is_mysql=False):
@@ -746,7 +749,46 @@ def get_modules():
         cursor.execute("SELECT * FROM modules ORDER BY CAST(module_no AS INTEGER) ASC, id ASC")
     rows = cursor.fetchall()
     conn.close()
-    return [dict(r) for r in rows]
+    result = []
+    for r in rows:
+        d = dict(r)
+        if "youtube_links" in d and isinstance(d["youtube_links"], str):
+            try:
+                d["youtube_links"] = json.loads(d["youtube_links"])
+            except Exception:
+                d["youtube_links"] = []
+        if "pages_json" in d and isinstance(d["pages_json"], str):
+            try:
+                d["pages_json"] = json.loads(d["pages_json"])
+            except Exception:
+                d["pages_json"] = []
+        result.append(d)
+    return result
+
+
+def get_module(module_id):
+    conn = get_db()
+    cursor = conn.cursor()
+    if USE_MYSQL:
+        cursor.execute("SELECT * FROM modules WHERE id = %s", (module_id,))
+    else:
+        cursor.execute("SELECT * FROM modules WHERE id = ?", (module_id,))
+    row = cursor.fetchone()
+    conn.close()
+    if not row:
+        return None
+    d = dict(row)
+    if "youtube_links" in d and isinstance(d["youtube_links"], str):
+        try:
+            d["youtube_links"] = json.loads(d["youtube_links"])
+        except Exception:
+            d["youtube_links"] = []
+    if "pages_json" in d and isinstance(d["pages_json"], str):
+        try:
+            d["pages_json"] = json.loads(d["pages_json"])
+        except Exception:
+            d["pages_json"] = []
+    return d
 
 
 def add_module(module_no, title, description, topics):

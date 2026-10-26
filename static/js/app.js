@@ -329,19 +329,47 @@ document.addEventListener('DOMContentLoaded', () => {
     modules.forEach((mod) => {
       const card = document.createElement('div');
       card.className = 'module-card';
+      card.setAttribute('data-module-id', mod.id);
+
+      const pages = Array.isArray(mod.pages_json) ? mod.pages_json : [];
+      const videos = Array.isArray(mod.youtube_links) ? mod.youtube_links : [];
+      const pageCount = pages.length || 7;
+      const videoCount = videos.length || 5;
+
+      const topicList = (mod.topics || '').split(',').map(t => t.trim()).filter(Boolean);
+      const topicPillsHtml = topicList.slice(0, 5).map(t => `<span class="topic-pill">${escapeHtml(t)}</span>`).join('');
+
       card.innerHTML = `
         <div class="module-header">
-          <span class="module-badge">Module ${escapeHtml(mod.module_no)}</span>
-          <button type="button" class="btn-text-danger" data-action="delete-mod" data-id="${mod.id}" title="Delete module">&times; Delete</button>
+          <span class="module-badge">UNIT ${escapeHtml(mod.module_no)}</span>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span class="module-pages-badge">${pageCount} Pages &bull; ${videoCount} Lectures</span>
+            <button type="button" class="btn-text-danger" data-action="delete-mod" data-id="${mod.id}" title="Delete module">&times;</button>
+          </div>
         </div>
         <h3 class="module-title">${escapeHtml(mod.title)}</h3>
         <p class="module-desc">${escapeHtml(mod.description)}</p>
-        ${mod.topics ? `
+        ${topicPillsHtml ? `
           <div class="module-topics-box">
-            <div class="module-topics-title">Topics Covered:</div>
-            <div>${escapeHtml(mod.topics)}</div>
+            <div class="module-topics-title">Key Core Syllabus:</div>
+            <div class="module-topics-pills">${topicPillsHtml}</div>
           </div>
         ` : ''}
+        <div class="module-actions-bar">
+          <button type="button" class="btn btn--primary btn--sm open-book-btn" data-id="${mod.id}">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+            <span>Read Module (Flip Book)</span>
+          </button>
+          <button type="button" class="btn btn--youtube btn--sm open-videos-btn" data-id="${mod.id}">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+            </svg>
+            <span>Video Lectures (${videoCount})</span>
+          </button>
+        </div>
       `;
       modulesGrid.appendChild(card);
     });
@@ -493,7 +521,52 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // Module card buttons (Flip Book & Videos)
     modulesGrid.addEventListener('click', (e) => {
+      const openBookBtn = e.target.closest('.open-book-btn');
+      if (openBookBtn) {
+        const modId = parseInt(openBookBtn.getAttribute('data-id'), 10);
+        openModuleBook(modId, 1);
+        return;
+      }
+      const openVideosBtn = e.target.closest('.open-videos-btn');
+      if (openVideosBtn) {
+        const modId = parseInt(openVideosBtn.getAttribute('data-id'), 10);
+        openModuleBook(modId, 1);
+        setTimeout(toggleVideosDrawer, 100);
+        return;
+      }
+    });
+
+    // Flipbook controls
+    if (bookPrevBtn) bookPrevBtn.addEventListener('click', flipPrevSpread);
+    if (bookNextBtn) bookNextBtn.addEventListener('click', flipNextSpread);
+    if (leftPageSheet) leftPageSheet.addEventListener('click', flipPrevSpread);
+    if (rightPageSheet) rightPageSheet.addEventListener('click', flipNextSpread);
+    if (bookTocToggleBtn) bookTocToggleBtn.addEventListener('click', toggleTocDrawer);
+    if (closeTocDrawerBtn) closeTocDrawerBtn.addEventListener('click', toggleTocDrawer);
+    if (bookVideosToggleBtn) bookVideosToggleBtn.addEventListener('click', toggleVideosDrawer);
+    if (closeVideosDrawerBtn) closeVideosDrawerBtn.addEventListener('click', toggleVideosDrawer);
+    if (bookPageSlider) {
+      bookPageSlider.addEventListener('input', (e) => {
+        jumpToPage(parseInt(e.target.value, 10));
+      });
+    }
+
+    // Keyboard navigation for flipbook
+    document.addEventListener('keydown', (e) => {
+      if (moduleBookModal && !moduleBookModal.hidden) {
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          flipNextSpread();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          flipPrevSpread();
+        }
+      }
+    });
+
+        modulesGrid.addEventListener('click', (e) => {
       const delBtn = e.target.closest('[data-action="delete-mod"]');
       if (delBtn) {
         const modId = parseInt(delBtn.dataset.id, 10);

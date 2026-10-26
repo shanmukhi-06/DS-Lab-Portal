@@ -693,6 +693,164 @@
     </div>
   </div>
 
+
+  <!-- 9. INTERACTIVE 3D FLIPBOOK MODULE READER MODAL -->
+  <div class="modal flipbook-modal" id="moduleBookModal" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="flipbook-shell" role="dialog" aria-modal="true" aria-labelledby="bookModalModuleTitle">
+      
+      <!-- Top Book Bar -->
+      <div class="flipbook-topbar">
+        <div class="flipbook-topbar__left">
+          <span class="flipbook-pill" id="bookModalModuleBadge">UNIT 1</span>
+          <h2 id="bookModalModuleTitle" class="flipbook-title">Module Title</h2>
+        </div>
+        <div class="flipbook-topbar__center">
+          <span class="flipbook-page-indicator" id="bookPageIndicator">Pages 1-2 of 7</span>
+        </div>
+        <div class="flipbook-topbar__right">
+          <button type="button" class="btn btn--sm btn--outline" id="bookTocToggleBtn" title="Table of Contents">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+            <span>Contents</span>
+          </button>
+          <button type="button" class="btn btn--sm btn--youtube" id="bookVideosToggleBtn" title="Curated YouTube Lectures">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+            </svg>
+            <span>Video Lectures</span>
+          </button>
+          <button type="button" class="modal__close-btn flipbook-close-btn" data-close-modal aria-label="Close book">&times;</button>
+        </div>
+      </div>
+
+      <!-- Book Stage / Viewport -->
+      <div class="flipbook-stage">
+        <!-- Prev Button -->
+        <button type="button" class="flip-nav-btn flip-nav-btn--prev" id="bookPrevBtn" aria-label="Previous Page" title="Previous Page (Left Arrow)">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Open Book 3D Container -->
+        <div class="open-book-container" id="openBookContainer">
+          <div class="book-cover-back"></div>
+          <div class="open-book" id="openBook">
+            <!-- Left Page Sheet -->
+            <div class="page-sheet page-sheet--left" id="leftPageSheet" title="Click to flip backward">
+              <div class="page-header-strip">
+                <span class="page-header-course">DS LAB &bull; MBU</span>
+                <span class="page-header-chapter" id="leftPageChapter">Chapter</span>
+              </div>
+              <div class="page-content" id="leftPageContent">
+                <!-- Injected via JS -->
+              </div>
+              <div class="page-number-footer" id="leftPageNumber">1</div>
+            </div>
+
+            <!-- Book Spine Divider -->
+            <div class="book-spine">
+              <div class="spine-thread"></div>
+            </div>
+
+            <!-- Right Page Sheet -->
+            <div class="page-sheet page-sheet--right" id="rightPageSheet" title="Click to flip forward">
+              <div class="page-header-strip">
+                <span class="page-header-chapter" id="rightPageChapter">Chapter</span>
+                <span class="page-header-course">CSE (DATA SCIENCE)</span>
+              </div>
+              <div class="page-content" id="rightPageContent">
+                <!-- Injected via JS -->
+              </div>
+              <div class="page-number-footer" id="rightPageNumber">2</div>
+            </div>
+
+            <!-- Animated Flipping Page Overlay (CSS 3D) -->
+            <div class="flipping-page-layer" id="flippingPageLayer" hidden>
+              <div class="flipping-page-inner" id="flippingPageInner">
+                <div class="flipping-face flipping-face--front" id="flippingPageFront"></div>
+                <div class="flipping-face flipping-face--back" id="flippingPageBack"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next Button -->
+        <button type="button" class="flip-nav-btn flip-nav-btn--next" id="bookNextBtn" aria-label="Next Page" title="Next Page (Right Arrow)">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+
+        <!-- Slide-out Table of Contents Drawer -->
+        <div class="book-drawer" id="bookTocDrawer" hidden>
+          <div class="book-drawer__header">
+            <h4>Table of Contents</h4>
+            <button type="button" class="book-drawer__close" id="closeTocDrawerBtn">&times;</button>
+          </div>
+          <div class="book-drawer__body" id="bookTocList"></div>
+        </div>
+
+        <!-- Slide-out Videos Drawer -->
+        <div class="book-drawer book-drawer--videos" id="bookVideosDrawer" hidden>
+          <div class="book-drawer__header">
+            <h4>Curated Video Lectures (YouTube)</h4>
+            <button type="button" class="book-drawer__close" id="closeVideosDrawerBtn">&times;</button>
+          </div>
+          <div class="book-drawer__body" id="bookVideosList"></div>
+        </div>
+      </div>
+
+      <!-- Bottom Book Controls -->
+      <div class="flipbook-bottombar">
+        <div class="flipbook-progress-wrap">
+          <span class="progress-lbl">Page Navigation:</span>
+          <input type="range" class="flipbook-range" id="bookPageSlider" min="1" max="7" value="1" step="1">
+          <span class="progress-pct" id="bookProgressPct">14%</span>
+        </div>
+        <div class="flipbook-hint">
+          <span>&larr; Click outer pages or use keyboard arrows (&larr; / &rarr;) to turn pages &rarr;</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 10. YOUTUBE VIDEO PLAYER MODAL -->
+  <div class="modal" id="youtubePlayerModal" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog modal__dialog--video" role="dialog" aria-modal="true" aria-labelledby="ytVideoModalTitle">
+      <div class="modal__header">
+        <div>
+          <span class="video-modal-channel" id="ytVideoModalChannel">Channel Name</span>
+          <h2 id="ytVideoModalTitle" class="modal__title">Video Title</h2>
+        </div>
+        <button type="button" class="modal__close-btn" data-close-modal aria-label="Close video">&times;</button>
+      </div>
+      <div class="modal__body video-modal-body">
+        <div class="video-iframe-container" id="ytPlayerContainer">
+          <!-- iframe injected when played -->
+        </div>
+        <div class="video-modal-desc-box">
+          <p id="ytVideoModalDesc">Video description</p>
+          <div class="video-modal-footer-actions">
+            <a href="#" id="ytDirectLinkBtn" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+              </svg>
+              Watch on YouTube
+            </a>
+            <button type="button" class="btn btn--secondary btn--sm" data-close-modal>Back to Portal</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Toast Notification Message -->
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 

@@ -1,0 +1,462 @@
+[
+  {
+    "module_no": "1",
+    "title": "Module 1: Introduction to Data Science, Python Toolboxes & Data Operations",
+    "description": "Foundations of modern data science, datification, Python scientific stack, Jupyter notebook environment, and comprehensive tabular data operations with Pandas & NumPy.",
+    "topics": "Data Science Foundations, Datification, Python vs Scripting Languages, NumPy & SciPy, Pandas Series & DataFrames, Data Slicing, Boolean Masking, Missing Values, Aggregations, Groupby, Pivot Tables, Ranking, Data Plotting",
+    "youtube_links": [
+      {
+        "id": "RBSGKlAvoiM",
+        "title": "What is Data Science? | Data Science for Beginners",
+        "channel": "IBM Technology",
+        "url": "https://www.youtube.com/watch?v=RBSGKlAvoiM",
+        "duration": "5:32",
+        "desc": "Foundational breakdown of data science, datification, and extracting actionable business intelligence."
+      },
+      {
+        "id": "LHBE6Q9XlzI",
+        "title": "Python for Data Science - Full Course for Beginners",
+        "channel": "freeCodeCamp.org",
+        "url": "https://www.youtube.com/watch?v=LHBE6Q9XlzI",
+        "duration": "12:00:00",
+        "desc": "Complete hands-on training covering Python syntax, data types, control flow, functions, and scientific libraries."
+      },
+      {
+        "id": "QUT1VHiLmmI",
+        "title": "NumPy Tutorial for Beginners - Fast Numerical Computing",
+        "channel": "Keith Galli",
+        "url": "https://www.youtube.com/watch?v=QUT1VHiLmmI",
+        "duration": "59:20",
+        "desc": "Multi-dimensional arrays, vectorization, slicing, matrix mathematics, and memory layouts in NumPy."
+      },
+      {
+        "id": "ZyhVh-qRZPA",
+        "title": "Pandas Full Tutorial: Complete Data Analysis Walkthrough",
+        "channel": "Corey Schafer",
+        "url": "https://www.youtube.com/watch?v=ZyhVh-qRZPA",
+        "duration": "45:15",
+        "desc": "Mastering Series, DataFrames, filtering, sorting, aggregations, and real-world CSV data wrangling."
+      },
+      {
+        "id": "HW29067qVWk",
+        "title": "Jupyter Notebook Tutorial: The Definitive Beginner Guide",
+        "channel": "Corey Schafer",
+        "url": "https://www.youtube.com/watch?v=HW29067qVWk",
+        "duration": "29:40",
+        "desc": "Anaconda setup, interactive code execution, markdown documentation, and inline data visualization."
+      }
+    ],
+    "pages": [
+      {
+        "page_no": 1,
+        "chapter": "Curriculum Overview",
+        "title": "Unit 1: Introduction to Data Science",
+        "content_html": "\n                <div class=\"book-cover-inner\">\n                  <div class=\"book-badge\">UNIT - 1</div>\n                  <h1 class=\"book-main-title\">Introduction to Data Science &amp; Python Operations</h1>\n                  <p class=\"book-subtitle\">Toolboxes, Scientific Computing Stack &amp; High-Performance Data Manipulation</p>\n                  \n                  <div class=\"book-meta-grid\">\n                    <div class=\"meta-item\"><strong>Course:</strong> Data Science Laboratory</div>\n                    <div class=\"meta-item\"><strong>Department:</strong> CSE (Data Science)</div>\n                    <div class=\"meta-item\"><strong>Environment:</strong> Python 3, NumPy, Pandas, Jupyter</div>\n                    <div class=\"meta-item\"><strong>Prerequisites:</strong> Basic Programming Logic</div>\n                  </div>\n\n                  <div class=\"book-callout info\">\n                    <h4>Course Objectives</h4>\n                    <ul>\n                      <li>Understand the evolution of data science, datification, and big data democratization.</li>\n                      <li>Master the core scientific Python toolboxes (NumPy, SciPy, Pandas, Matplotlib, Scikit-Learn).</li>\n                      <li>Operate the interactive Jupyter Notebook environment and Anaconda distribution.</li>\n                      <li>Perform advanced tabular data operations: reading, selecting, filtering, grouping, pivoting, and ranking.</li>\n                    </ul>\n                  </div>\n\n                  <div class=\"page-footer-note\">Mohan Babu University &bull; Department of Data Science</div>\n                </div>\n                "
+      },
+      {
+        "page_no": 2,
+        "chapter": "Section 1.1",
+        "title": "What is Data Science & Datification?",
+        "content_html": "\n                <h2>1.1 What is Data Science?</h2>\n                <p>You have already experienced data science in several forms: when searching the web, asking mobile phones for directions, or receiving personalized recommendations. Data science is commonly defined as a <strong>methodology by which actionable insights can be inferred from data</strong>.</p>\n                \n                <p>Data science builds upon centuries of mathematical and statistical foundations, standing on the shoulders of eighteenth-century giants such as <em>Pierre-Simon Laplace (1749-1827)</em> and <em>Thomas Bayes (1701-1761)</em>, combined with modern computational machine learning.</p>\n\n                <div class=\"book-card highlight\">\n                  <h3>The Concept of Datification</h3>\n                  <p>The novelty of modern data science is rooted in <strong>datification</strong>: the process of rendering into data aspects of the world that have never been quantified before. At the personal level, our web browsing, books read, music listened to, driving behavior, and social interactions are datified. At the enterprise level, servers capture web activity logs, sensor signals, machine telemetry, and customer communications for predictive analysis.</p>\n                </div>\n\n                <h3>Four Core Strategies to Explore Data</h3>\n                <ol class=\"book-numbered-list\">\n                  <li><strong>Probing Reality:</strong> Gathering data via passive or active methods (e.g. A/B testing in web platforms to determine optimal UX choices).</li>\n                  <li><strong>Pattern Discovery:</strong> Dividing complex problems to discover useful patterns, natural clusters, and consumer behavioral profiles.</li>\n                  <li><strong>Predicting Future Events:</strong> Building robust mathematical models to forecast future samples and take proactive decisions.</li>\n                  <li><strong>Understanding People &amp; the World:</strong> Leveraging deep learning for natural language processing, computer vision, and cognitive systems.</li>\n                </ol>\n                "
+      },
+      {
+        "page_no": 3,
+        "chapter": "Section 1.2",
+        "title": "Toolboxes for Data Scientists & Why Python?",
+        "content_html": "\n                <h2>1.2 Toolboxes for Data Scientists</h2>\n                <p>Choosing the right tools allows data scientists to focus directly on data analysis rather than boilerplate code. In modern data science, Python has emerged as the universal language of choice.</p>\n\n                <div class=\"book-table-wrap\">\n                  <table class=\"book-table\">\n                    <thead>\n                      <tr><th>Paradigm</th><th>Languages</th><th>Characteristics</th></tr>\n                    </thead>\n                    <tbody>\n                      <tr><td><strong>High-Performance / Production</strong></td><td>C, C++, Java</td><td>Compiled, high execution speed, static typing, verbose syntax.</td></tr>\n                      <tr><td><strong>Scripting / Prototyping</strong></td><td>Ruby, Perl, Python</td><td>Interpreted, dynamic typing, concise syntax, fast experimentation.</td></tr>\n                    </tbody>\n                  </table>\n                </div>\n\n                <h3>Why Python for Data Science?</h3>\n                <ul class=\"book-list\">\n                  <li><strong>Simplicity:</strong> Clean, highly readable syntax without mandatory semicolon delimiters or boilerplates.</li>\n                  <li><strong>Multi-Paradigm:</strong> Supports Object-Oriented, Functional, and Procedural programming paradigms natively.</li>\n                  <li><strong>Rich Scientific Ecosystem:</strong>\n                    <ul>\n                      <li><strong>NumPy:</strong> Multi-dimensional array structures (<code>ndarray</code>), vectorization, and linear algebra routines.</li>\n                      <li><strong>SciPy:</strong> Scientific algorithms for optimization, signal processing, and integration.</li>\n                      <li><strong>Pandas:</strong> High-performance <code>DataFrame</code> structures with integrated indexing for structured tabular data.</li>\n                      <li><strong>Scikit-Learn:</strong> Machine learning algorithms for classification, regression, clustering, and model selection.</li>\n                      <li><strong>Matplotlib &amp; Seaborn:</strong> Publication-quality 2D charting, statistical distributions, and heatmaps.</li>\n                    </ul>\n                  </li>\n                </ul>\n\n                <div class=\"book-callout tip\">\n                  <h4>Interactive Environment: Jupyter Notebooks</h4>\n                  <p>Jupyter Notebook provides a web-based interactive development environment (WIDE) running on <code>http://localhost:8888</code>. It allows data scientists to weave together executable Python code cells, markdown documentation, mathematical formulas, and inline plots.</p>\n                </div>\n                "
+      },
+      {
+        "page_no": 4,
+        "chapter": "Section 1.3",
+        "title": "Pandas DataFrame Structure & Reading Data",
+        "content_html": "\n                <h2>1.3 The DataFrame Data Structure</h2>\n                <p>The key data structure in Pandas is the <strong>DataFrame</strong>: a two-dimensional tabular data structure with labeled axes (rows as indexes, and columns as Series). It functions like an ultra-fast in-memory spreadsheet.</p>\n\n                <h3>Creating a DataFrame from Python Dictionaries</h3>\n                <pre class=\"book-code\"><code>import pandas as pd\nimport numpy as np\n\ndata = {\n    'year': [2010, 2011, 2012, 2010, 2011, 2012, 2010, 2011, 2012],\n    'team': ['FCBarcelona', 'FCBarcelona', 'FCBarcelona', \n             'RMadrid', 'RMadrid', 'RMadrid', \n             'ValenciaCF', 'ValenciaCF', 'ValenciaCF'],\n    'wins': [30, 28, 32, 29, 32, 26, 21, 17, 19],\n    'draws': [6, 7, 4, 5, 4, 7, 8, 10, 8],\n    'losses': [2, 3, 2, 4, 2, 5, 9, 11, 11]\n}\nfootball = pd.DataFrame(data, columns=['year', 'team', 'wins', 'draws', 'losses'])\nprint(football.head())</code></pre>\n\n                <h3>Reading Real-World Tabular Datasets</h3>\n                <p>Most real-world data is distributed in Comma-Separated Values (CSV) format. Pandas provides the high-performance <code>read_csv()</code> method:</p>\n                <pre class=\"book-code\"><code># Reading Eurostat Educational Indicators dataset\nedu = pd.read_csv('educ_figdp_1_Data.csv',\n                  na_values=':',\n                  usecols=['TIME', 'GEO', 'Value'])\n\n# Inspecting the data structure\nprint(\"Dimensions:\", edu.shape)      # Output: 384 rows x 3 columns\nprint(edu.head())                    # First 5 rows\nprint(edu.describe())                # Descriptive statistical summary</code></pre>\n                "
+      },
+      {
+        "page_no": 5,
+        "chapter": "Section 1.4",
+        "title": "Selecting, Slicing & Boolean Filtering",
+        "content_html": "\n                <h2>1.4 Selecting, Slicing &amp; Filtering Data</h2>\n                <p>Pandas provides expressive operators to slice and filter data subsets based on position, column name, or conditional logic.</p>\n\n                <h3>Selecting Columns &amp; Slicing Rows</h3>\n                <pre class=\"book-code\"><code># 1. Select a single column (returns a Series)\nvalues_series = edu['Value']\n\n# 2. Slice rows by position index (10th to 13th rows)\nsubset_rows = edu[10:14]\n\n# 3. Label-based selection using .loc / .iloc\nsubset_grid = edu.loc[90:94, ['TIME', 'GEO']]</code></pre>\n\n                <h3>Boolean Filtering (Masking)</h3>\n                <p>Filtering rows based on conditional expressions creates a Boolean mask (<code>True</code>/<code>False</code> array) that subsets the data:</p>\n                <pre class=\"book-code\"><code># Filter countries spending more than 6.5% on education\nhigh_spending = edu[edu['Value'] > 6.5].tail()\nprint(high_spending)\n# Output: Belgium, Cyprus, Malta, Finland (2002-2011)</code></pre>\n\n                <h3>Handling Missing Values (NaN)</h3>\n                <p>In real datasets, missing entries are represented as <code>NaN</code> (Not a Number). In Python, <code>NaN != NaN</code>, so the <code>isnull()</code> function must be used:</p>\n                <pre class=\"book-code\"><code># Filter rows containing missing values\nmissing_records = edu[edu['Value'].isnull()].head()\n\n# Option A: Drop records with missing values\nclean_edu = edu.dropna(how='any', subset=['Value'])\n\n# Option B: Impute missing values with a constant or mean\nfilled_edu = edu.fillna(value={'Value': 0})</code></pre>\n                "
+      },
+      {
+        "page_no": 6,
+        "chapter": "Section 1.5",
+        "title": "Aggregations, Groupby, Pivoting & Ranking",
+        "content_html": "\n                <h2>1.5 Data Manipulation &amp; Transformation</h2>\n                <p>Modern analytics requires transforming raw tabular structures into aggregated and reshaped formats for downstream modeling.</p>\n\n                <h3>Applying Custom &amp; Lambda-Functions</h3>\n                <pre class=\"book-code\"><code># Normalizing educational expenditure by dividing by column maximum\nedu['ValueNorm'] = edu['Value'] / edu['Value'].max()\n\n# Applying custom mathematical functions via lambda\nedu['Value_Squared'] = edu['Value'].apply(lambda d: d ** 2)\n\n# Dropping temporary columns (inplace=True mutates original DataFrame)\nedu.drop('Value_Squared', axis=1, inplace=True)</code></pre>\n\n                <h3>Grouping Data (Groupby)</h3>\n                <pre class=\"book-code\"><code># Compute mean educational expenditure per country across all years\ncountry_means = edu[['GEO', 'Value']].groupby('GEO').mean()\nprint(country_means.head())</code></pre>\n\n                <h3>Pivoting Tabular Structures</h3>\n                <p>Transforming rows into columns creates a spreadsheet-style pivot matrix:</p>\n                <pre class=\"book-code\"><code># Pivot data: Countries as Index, Years as Columns\nfiltered_data = edu[edu['TIME'] > 2005]\npivedu = pd.pivot_table(filtered_data, values='Value', index=['GEO'], columns=['TIME'])\nprint(pivedu.head())</code></pre>\n\n                <h3>Ranking Data</h3>\n                <pre class=\"book-code\"><code># Rank countries descending by educational funding\npivedu_ranked = pivedu.rank(ascending=False, method='first')\n\n# Sum all years and find top 5 countries\ntop_5 = pivedu.sum(axis=1).rank(ascending=False, method='dense').sort_values().head(5)\n# Output: Denmark, Cyprus, Finland, Malta, Belgium</code></pre>\n                "
+      },
+      {
+        "page_no": 7,
+        "chapter": "Review & Media",
+        "title": "Curated Video Lectures & Lab Review",
+        "content_html": "\n                <h2>1.6 Video Lectures &amp; Self-Assessment</h2>\n                <p>Review the following curated educational resources to reinforce your mastery of Python data operations:</p>\n\n                <div class=\"video-ref-container\">\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>Python for Data Science Full Tutorial</strong>\n                      <span class=\"video-ref-channel\">freeCodeCamp.org &bull; 12 Hours</span>\n                      <p>Complete introduction to Python syntax, data structures, and scientific computing.</p>\n                      <a href=\"https://www.youtube.com/watch?v=LHBE6Q9XlzI\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>Pandas Complete Data Analysis Course</strong>\n                      <span class=\"video-ref-channel\">Corey Schafer &bull; 45 Mins</span>\n                      <p>Step-by-step guidance on DataFrame filtering, sorting, groupby, and CSV handling.</p>\n                      <a href=\"https://www.youtube.com/watch?v=ZyhVh-qRZPA\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>NumPy Crash Course for Data Scientists</strong>\n                      <span class=\"video-ref-channel\">Keith Galli &bull; 59 Mins</span>\n                      <p>Master multi-dimensional arrays, vectorization, indexing, and linear algebra routines.</p>\n                      <a href=\"https://www.youtube.com/watch?v=QUT1VHiLmmI\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n                </div>\n\n                <div class=\"book-callout review\">\n                  <h4>Unit 1 Review Questions</h4>\n                  <ol>\n                    <li>Explain the difference between a Pandas <code>Series</code> and a <code>DataFrame</code>.</li>\n                    <li>Why is <code>NaN == NaN</code> evaluated to <code>False</code> in Python? How do you reliably detect missing values?</li>\n                    <li>What is the difference between <code>df.drop('col', axis=1)</code> and <code>df.drop(5, axis=0)</code>?</li>\n                    <li>Describe the operation of <code>pd.pivot_table()</code> with a practical example.</li>\n                  </ol>\n                </div>\n                "
+      }
+    ]
+  },
+  {
+    "module_no": "2",
+    "title": "Module 2: Descriptive Statistics, Data Preparation & Exploratory Data Analysis (EDA)",
+    "description": "Statistical foundations for data scientists: sample vs population measures, data cleaning pipelines, probability distributions, outlier treatment, estimation theory, and hypothesis testing.",
+    "topics": "Populations & Samples, Data Preparation Pipeline, EDA Summarization, Mean, Variance & Standard Deviation, Median & Outlier Robustness, Quantiles & Percentiles, Histograms & PMF & CDF, Skewness & Pearson Coefficient, Gaussian & Exponential Distributions, KDE, MSE & Estimators, Confidence Intervals, Hypothesis Testing & P-Values",
+    "youtube_links": [
+      {
+        "id": "L1i_qVv_J44",
+        "title": "Descriptive Statistics: Mean, Median, Mode, Variance & SD",
+        "channel": "The Organic Chemistry Tutor",
+        "url": "https://www.youtube.com/watch?v=L1i_qVv_J44",
+        "duration": "25:40",
+        "desc": "Step-by-step mathematical calculation of central tendency, sample variance, and standard deviations."
+      },
+      {
+        "id": "FtcXpMm_sZk",
+        "title": "Exploratory Data Analysis (EDA) Masterclass in Python",
+        "channel": "Krish Naik",
+        "url": "https://www.youtube.com/watch?v=FtcXpMm_sZk",
+        "duration": "42:15",
+        "desc": "Hands-on data cleaning, missing value handling, feature distribution, and correlation heatmaps."
+      },
+      {
+        "id": "0oc49DyA3hU",
+        "title": "Hypothesis Testing and The Null Hypothesis Explained",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=0oc49DyA3hU",
+        "duration": "14:45",
+        "desc": "Intuitive visual explanation of null vs alternative hypothesis and statistical significance."
+      },
+      {
+        "id": "5Z9OIYA8He8",
+        "title": "P-Values: What They Are and How to Interpret Them",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=5Z9OIYA8He8",
+        "duration": "11:20",
+        "desc": "Clear breakdown of p-values, alpha significance thresholds, and common data science traps."
+      },
+      {
+        "id": "zeJD6dqJ5lo",
+        "title": "The Central Limit Theorem & Confidence Intervals",
+        "channel": "3Blue1Brown",
+        "url": "https://www.youtube.com/watch?v=zeJD6dqJ5lo",
+        "duration": "18:30",
+        "desc": "Visual intuition for why normal distributions arise in sample averages and constructing confidence intervals."
+      }
+    ],
+    "pages": [
+      {
+        "page_no": 1,
+        "chapter": "Curriculum Overview",
+        "title": "Unit 2: Descriptive Statistics & EDA",
+        "content_html": "\n                <div class=\"book-cover-inner\">\n                  <div class=\"book-badge\">UNIT - 2</div>\n                  <h1 class=\"book-main-title\">Descriptive Statistics, EDA &amp; Statistical Inference</h1>\n                  <p class=\"book-subtitle\">Measures of Central Tendency, Data Distributions, Outlier Filtering &amp; Hypothesis Testing</p>\n                  \n                  <div class=\"book-meta-grid\">\n                    <div class=\"meta-item\"><strong>Course:</strong> Data Science Laboratory</div>\n                    <div class=\"meta-item\"><strong>Department:</strong> CSE (Data Science)</div>\n                    <div class=\"meta-item\"><strong>Environment:</strong> Python 3, Pandas, SciPy, Seaborn</div>\n                    <div class=\"meta-item\"><strong>Core Focus:</strong> Statistical Foundations</div>\n                  </div>\n\n                  <div class=\"book-callout info\">\n                    <h4>Course Objectives</h4>\n                    <ul>\n                      <li>Differentiate between sample statistics and population parameters.</li>\n                      <li>Master the 4-stage data preparation pipeline (obtaining, parsing, cleaning, structuring).</li>\n                      <li>Calculate and interpret mean, variance, standard deviation, and median.</li>\n                      <li>Evaluate distribution shapes using histograms, PMF, CDF, skewness, and KDE.</li>\n                      <li>Construct statistical confidence intervals and perform formal hypothesis testing.</li>\n                    </ul>\n                  </div>\n\n                  <div class=\"page-footer-note\">Mohan Babu University &bull; Department of Data Science</div>\n                </div>\n                "
+      },
+      {
+        "page_no": 2,
+        "chapter": "Section 2.1",
+        "title": "Populations, Samples & Data Preparation",
+        "content_html": "\n                <h2>2.1 Populations, Samples &amp; Data Preparation</h2>\n                <p>Statistics is built upon two core concepts:</p>\n                <ul>\n                  <li><strong>Population:</strong> The complete collection of objects, items, or individuals about which information is sought.</li>\n                  <li><strong>Sample:</strong> A carefully observed representative subset drawn from the population.</li>\n                </ul>\n\n                <h3>The 4-Step Data Preparation Pipeline</h3>\n                <div class=\"pipeline-steps\">\n                  <div class=\"step-card\">\n                    <span class=\"step-num\">1</span>\n                    <strong>Obtaining Data</strong>\n                    <p>Acquiring raw data from files, databases, web scraping, or live sensor feeds.</p>\n                  </div>\n                  <div class=\"step-card\">\n                    <span class=\"step-num\">2</span>\n                    <strong>Parsing Data</strong>\n                    <p>Decoding raw text formats (CSV, JSON, XML, fixed-width tables) into memory structures.</p>\n                  </div>\n                  <div class=\"step-card\">\n                    <span class=\"step-num\">3</span>\n                    <strong>Cleaning Data</strong>\n                    <p>Detecting anomalies, handling non-responses, eliminating corrupted records.</p>\n                  </div>\n                  <div class=\"step-card\">\n                    <span class=\"step-num\">4</span>\n                    <strong>Building Data Structures</strong>\n                    <p>Representing samples in memory-efficient DataFrames or out-of-memory key-value databases.</p>\n                  </div>\n                </div>\n\n                <h3>Case Study: The Adult Census Dataset</h3>\n                <p>The UCI Adult dataset comprises <strong>32,561 records</strong> across 15 attributes (age, education, occupation, sex, hours per week, capital gain, income). We can explore demographic hypotheses such as comparing earnings ratios across age and gender segments.</p>\n                "
+      },
+      {
+        "page_no": 3,
+        "chapter": "Section 2.2",
+        "title": "Measures of Central Tendency & Dispersion",
+        "content_html": "\n                <h2>2.2 Central Tendency &amp; Dispersion</h2>\n                <p>Summarizing quantitative variables requires numerical descriptors that capture both the center and the spread of data.</p>\n\n                <h3>Sample Mean &amp; Variance</h3>\n                <p>Given a sample of n observations x1, x2, ..., xn, the <strong>Sample Mean</strong> &mu; is:</p>\n                <div class=\"math-block\">&mu; = (1 / n) &Sigma; x<sub>i</sub></div>\n\n                <p>The <strong>Sample Variance</strong> &sigma;&sup2; measures the dispersion of values around the mean:</p>\n                <div class=\"math-block\">&sigma;&sup2; = (1 / n) &Sigma; (x<sub>i</sub> - &mu;)&sup2;</div>\n\n                <p>The <strong>Standard Deviation</strong> &sigma; = &radic;(&sigma;&sup2;) is preferred in practice because it retains the original physical units of the measurement (e.g., years, dollars, kilograms).</p>\n\n                <h3>The Sample Median &amp; Robustness to Outliers</h3>\n                <p>While the mean is sensitive to extreme values, the <strong>Sample Median</strong> &mu;<sub>1/2</sub> is an order statistic that identifies the exact middle element when sorted.</p>\n\n                <div class=\"book-callout warning\">\n                  <h4>The Impact of Outliers</h4>\n                  <p>In a dataset of weekly work hours [40, 42, 38, 45, 1000], the sample mean surges from 41 to 233 hours due to a single data entry mistake! However, the sample median remains robust at 42 hours, demonstrating why the median is the preferred central descriptor in the presence of noise.</p>\n                </div>\n                "
+      },
+      {
+        "page_no": 4,
+        "chapter": "Section 2.3",
+        "title": "Quantiles, Percentiles & Distributions",
+        "content_html": "\n                <h2>2.3 Quantiles, Percentiles &amp; Distributions</h2>\n                <p>To examine the complete profile of a variable, data is partitioned into percentiles and visualized through distribution curves.</p>\n\n                <h3>The 5-Number Summary &amp; IQR</h3>\n                <p>The sample is divided into quartiles:</p>\n                <ul>\n                  <li><strong>Q1 (25th Percentile):</strong> First quartile (25% of observations fall below this value).</li>\n                  <li><strong>Q2 (50th Percentile):</strong> Median of the dataset.</li>\n                  <li><strong>Q3 (75th Percentile):</strong> Third quartile (75% of observations fall below this value).</li>\n                  <li><strong>Interquartile Range (IQR):</strong> IQR = Q3 - Q1, capturing the middle 50% of the distribution.</li>\n                </ul>\n\n                <h3>Histograms, PMF &amp; CDF</h3>\n                <div class=\"book-card\">\n                  <ul class=\"book-list\">\n                    <li><strong>Histogram:</strong> Counts the raw frequency of observations falling into discrete bins.</li>\n                    <li><strong>Probability Mass Function (PMF):</strong> Normalized histogram where bin heights are divided by total samples n, representing discrete probabilities summing to 1.</li>\n                    <li><strong>Cumulative Distribution Function (CDF):</strong> Describes the probability that a real-valued random variable X will be less than or equal to x: F(x) = P(X &le; x).</li>\n                  </ul>\n                </div>\n\n                <h3>Outlier Detection &amp; Treatment</h3>\n                <pre class=\"book-code\"><code># Domain-based outlier trimming on Adult dataset\n# Filter reasonable working age between 22 and 72 years\ndf_cleaned = df.drop(df.index[\n    (df['age'] > df['age'].median() + 35) | \n    (df['age'] < df['age'].median() - 15)\n])\nprint(\"Mean age before:\", df['age'].mean(), \"After:\", df_cleaned['age'].mean())</code></pre>\n                "
+      },
+      {
+        "page_no": 5,
+        "chapter": "Section 2.4",
+        "title": "Measuring Asymmetry & Continuous Distributions",
+        "content_html": "\n                <h2>2.4 Measuring Asymmetry &amp; Continuous Distributions</h2>\n                \n                <h3>Skewness &amp; Pearson's Skewness Coefficient</h3>\n                <p>Skewness characterizes the asymmetry of a distribution around its mean:</p>\n                <div class=\"math-block\">g1 = [1 / (n &bull; &sigma;&sup3;)] &Sigma; (x<sub>i</sub> - &mu;)&sup3;</div>\n                <p>A symmetric or Gaussian distribution yields g1 = 0. Positive values indicate a longer right tail; negative values indicate a longer left tail.</p>\n                \n                <p><strong>Pearson's Median Skewness Coefficient:</strong></p>\n                <div class=\"math-block\">g<sub>p</sub> = 3(&mu; - &mu;<sub>1/2</sub>) / &sigma;</div>\n\n                <h3>Common Continuous Distributions</h3>\n                <div class=\"book-grid-2\">\n                  <div class=\"book-card\">\n                    <h4>Exponential Distribution</h4>\n                    <p>Models inter-arrival times between independent random events (e.g. radioactive decay, server requests):</p>\n                    <p>CDF(x) = 1 - e<sup>-&lambda;x</sup>, &nbsp; PDF(x) = &lambda;e<sup>-&lambda;x</sup></p>\n                  </div>\n                  <div class=\"book-card\">\n                    <h4>Gaussian (Normal) Distribution</h4>\n                    <p>The ubiquitous bell-shaped curve describing natural and biological measurements:</p>\n                    <p>PDF(x) = [1 / &radic;(2&pi;&sigma;&sup2;)] &bull; exp(-(x - &mu;)&sup2; / (2&sigma;&sup2;))</p>\n                  </div>\n                </div>\n\n                <h3>Kernel Density Estimation (KDE)</h3>\n                <p>When the true underlying distribution is unknown, non-parametric <strong>Kernel Density Estimation</strong> generates a smooth probability density curve by summing Gaussian kernels placed over every data point:</p>\n                <pre class=\"book-code\"><code>from scipy.stats import gaussian_kde\ndensity = gaussian_kde(sample_data)\nx_grid = np.linspace(sample_data.min(), sample_data.max(), 200)\nplt.plot(x_grid, density(x_grid), 'r-', linewidth=2)</code></pre>\n                "
+      },
+      {
+        "page_no": 6,
+        "chapter": "Section 2.5",
+        "title": "Estimation Theory, Confidence Intervals & Hypothesis Testing",
+        "content_html": "\n                <h2>2.5 Estimation Theory &amp; Hypothesis Testing</h2>\n                \n                <h3>Estimators &amp; Standard Error (SE)</h3>\n                <p>A point estimator approximates an unknown population parameter. By the <strong>Central Limit Theorem (CLT)</strong>, the sampling distribution of the sample mean approaches a normal distribution with standard error:</p>\n                <div class=\"math-block\">SE = &sigma; / &radic;n</div>\n\n                <h3>Confidence Intervals (CI)</h3>\n                <p>A confidence interval establishes a plausible range of values: &Theta; &plusmn; z &bull; SE.</p>\n                <ul>\n                  <li><strong>90% Confidence:</strong> z = 1.65</li>\n                  <li><strong>95% Confidence:</strong> z = 1.96 &implies; CI = [x&#772; - 1.96&bull;SE, x&#772; + 1.96&bull;SE]</li>\n                  <li><strong>99% Confidence:</strong> z = 2.58</li>\n                </ul>\n\n                <h3>Bootstrapping Simulation</h3>\n                <pre class=\"book-code\"><code># Bootstrapping 95% Confidence Interval for mean accident rate\ndef mean_bootstrap(data, iterations=10000):\n    n = len(data)\n    means = [np.mean(np.random.choice(data, size=n, replace=True)) for _ in range(iterations)]\n    return np.percentile(means, 2.5), np.percentile(means, 97.5)\n\nci_low, ci_high = mean_bootstrap(accidents_data)\nprint(f\"95% Bootstrapped CI: [{ci_low:.3f}, {ci_high:.3f}]\")</code></pre>\n\n                <h3>Hypothesis Testing &amp; p-Values</h3>\n                <p><strong>Null Hypothesis (H0):</strong> The observed difference is purely due to random chance.</p>\n                <p><strong>Alternative Hypothesis (HA):</strong> The observed effect is real and statistically significant.</p>\n                <p>The <strong>p-value</strong> is the probability of observing data at least as extreme as our current sample assuming H0 is true. If p &lt; 0.05, we reject H0 in favor of HA.</p>\n                "
+      },
+      {
+        "page_no": 7,
+        "chapter": "Review & Media",
+        "title": "Curated Video Lectures & Formula Summary",
+        "content_html": "\n                <h2>2.6 Video Lectures &amp; Formula Summary</h2>\n                <p>Deepen your comprehension of statistical inference and EDA with these curated lectures:</p>\n\n                <div class=\"video-ref-container\">\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>Hypothesis Testing &amp; The Null Hypothesis</strong>\n                      <span class=\"video-ref-channel\">StatQuest with Josh Starmer &bull; 14 Mins</span>\n                      <p>Intuitive visual guide to testing assumptions, choosing test statistics, and significance.</p>\n                      <a href=\"https://www.youtube.com/watch?v=0oc49DyA3hU\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>P-Values Explained Visually</strong>\n                      <span class=\"video-ref-channel\">StatQuest with Josh Starmer &bull; 11 Mins</span>\n                      <p>Understand exactly what p-values tell you and avoid frequent statistical misconceptions.</p>\n                      <a href=\"https://www.youtube.com/watch?v=5Z9OIYA8He8\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>The Central Limit Theorem &amp; Confidence Intervals</strong>\n                      <span class=\"video-ref-channel\">3Blue1Brown &bull; 18 Mins</span>\n                      <p>Visual demonstration of how sample averages converge into Gaussian normal distributions.</p>\n                      <a href=\"https://www.youtube.com/watch?v=zeJD6dqJ5lo\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n                </div>\n\n                <div class=\"book-callout review\">\n                  <h4>Unit 2 Core Formulas</h4>\n                  <table class=\"book-table\">\n                    <tr><td>Sample Mean</td><td>&mu; = (1/n) &Sigma; x<sub>i</sub></td></tr>\n                    <tr><td>Sample Variance</td><td>&sigma;&sup2; = (1/n) &Sigma; (x<sub>i</sub> - &mu;)&sup2;</td></tr>\n                    <tr><td>Standard Error</td><td>SE = &sigma; / &radic;n</td></tr>\n                    <tr><td>95% Confidence Interval</td><td>[x&#772; - 1.96&bull;SE, x&#772; + 1.96&bull;SE]</td></tr>\n                    <tr><td>Pearson's Skewness</td><td>g<sub>p</sub> = 3(&mu; - &mu;<sub>1/2</sub>) / &sigma;</td></tr>\n                  </table>\n                </div>\n                "
+      }
+    ]
+  },
+  {
+    "module_no": "3",
+    "title": "Module 3: Supervised Machine Learning, Classification & Model Evaluation",
+    "description": "Supervised learning models, classification pipelines, confusion matrices, evaluation metrics, model complexity, regularization, cross-validation, and algorithms (KNN, Decision Trees, SVM, Neural Networks).",
+    "topics": "Machine Learning Taxonomy, Supervised Classification, Scikit-Learn Pipeline API, K-Nearest Neighbors, Accuracy vs Class Imbalance, Confusion Matrix (TP/FP/TN/FN), Precision, Recall, Specificity, NPV, Overfitting & Generalization, Bias-Variance Trade-off, Learning Curves, Regularization (L1 & L2), K-Fold Cross-Validation, Decision Trees (ID3), Support Vector Machines (Max Margin, Soft Margin, Kernels), Random Forests, Artificial Neural Networks (MLP, Backpropagation)",
+    "youtube_links": [
+      {
+        "id": "Gv9_4yMHFhI",
+        "title": "Machine Learning Fundamentals & Classification",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=Gv9_4yMHFhI",
+        "duration": "20:10",
+        "desc": "Intuitive guide to supervised learning, training vs testing partitions, and prediction error."
+      },
+      {
+        "id": "HVXime0nQeI",
+        "title": "K-Nearest Neighbors (KNN) Algorithm Explained",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=HVXime0nQeI",
+        "duration": "10:35",
+        "desc": "How the KNN algorithm classifies new data points using distance metrics and k selection."
+      },
+      {
+        "id": "4jRBRDbJemM",
+        "title": "Confusion Matrix, ROC Curve, and AUC Explained",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=4jRBRDbJemM",
+        "duration": "16:40",
+        "desc": "Precision, recall, sensitivity, specificity, and evaluation trade-offs in imbalanced domains."
+      },
+      {
+        "id": "efR1C6CvhmE",
+        "title": "Support Vector Machines (SVM) & The Kernel Trick",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=efR1C6CvhmE",
+        "duration": "22:15",
+        "desc": "Maximum margin hyperplanes, soft margin C trade-offs, and polynomial/RBF kernel functions."
+      },
+      {
+        "id": "Ilg3gGewQ5U",
+        "title": "Neural Networks: What is Backpropagation Really Doing?",
+        "channel": "3Blue1Brown",
+        "url": "https://www.youtube.com/watch?v=Ilg3gGewQ5U",
+        "duration": "14:20",
+        "desc": "Visualizing gradient descent, chain rule calculus, and error backpropagation through hidden layers."
+      }
+    ],
+    "pages": [
+      {
+        "page_no": 1,
+        "chapter": "Curriculum Overview",
+        "title": "Unit 3: Supervised Learning & Classification",
+        "content_html": "\n                <div class=\"book-cover-inner\">\n                  <div class=\"book-badge\">UNIT - 3</div>\n                  <h1 class=\"book-main-title\">Supervised Machine Learning &amp; Model Evaluation</h1>\n                  <p class=\"book-subtitle\">Classification Algorithms, Confusion Matrices, Learning Curves &amp; Regularization</p>\n                  \n                  <div class=\"book-meta-grid\">\n                    <div class=\"meta-item\"><strong>Course:</strong> Data Science Laboratory</div>\n                    <div class=\"meta-item\"><strong>Department:</strong> CSE (Data Science)</div>\n                    <div class=\"meta-item\"><strong>Environment:</strong> Python 3, Scikit-Learn, NumPy, Matplotlib</div>\n                    <div class=\"meta-item\"><strong>Core Focus:</strong> Supervised Predictive Modeling</div>\n                  </div>\n\n                  <div class=\"book-callout info\">\n                    <h4>Course Objectives</h4>\n                    <ul>\n                      <li>Master the Scikit-Learn unified API (Estimators, Predictors, Transformers).</li>\n                      <li>Implement K-Nearest Neighbors (KNN), Decision Trees, and Support Vector Machines.</li>\n                      <li>Diagnose the Accuracy Paradox in imbalanced datasets using Confusion Matrices.</li>\n                      <li>Evaluate precision, recall, specificity, negative predictive value, and F1-score.</li>\n                      <li>Prevent overfitting using regularized objective functions (L1/L2) and cross-validation.</li>\n                    </ul>\n                  </div>\n\n                  <div class=\"page-footer-note\">Mohan Babu University &bull; Department of Data Science</div>\n                </div>\n                "
+      },
+      {
+        "page_no": 2,
+        "chapter": "Section 3.1",
+        "title": "Taxonomy of Machine Learning & Problem Formulation",
+        "content_html": "\n                <h2>3.1 Taxonomy of Machine Learning</h2>\n                <p>Machine learning involves coding algorithms that automatically adapt their performance through exposure to training data. ML is broadly divided into three paradigms:</p>\n                \n                <ol class=\"book-numbered-list\">\n                  <li><strong>Supervised Learning:</strong> Algorithms learn mapping functions from labeled input-output pairs (X &rarr; y) to predict outcomes on unseen test data (e.g. SVM, Decision Trees, Logistic Regression).</li>\n                  <li><strong>Unsupervised Learning:</strong> Finding hidden geometric or statistical structures within unlabeled data (e.g. K-Means, PCA, Hierarchical Clustering).</li>\n                  <li><strong>Reinforcement Learning:</strong> Agents learning optimal policy actions via environmental reward and penalty signals (e.g. Q-Learning, DRL).</li>\n                </ol>\n\n                <h3>Framing the Problem: Lending Club Case Study</h3>\n                <p>We formulate a binary classification task on loan applications: predicting whether an approved loan will be fully funded (y = 1) or unfunded (y = -1). An application is defined as unsuccessful if the funded amount falls short by 5% or more of the requested amount:</p>\n                <div class=\"math-block\">(loan_amount - funded_amount) / loan_amount &ge; 0.05</div>\n\n                <h3>The Scikit-Learn Object-Oriented Interface</h3>\n                <ul class=\"book-list\">\n                  <li><code>Estimator.fit(X, y)</code>: Trains model parameters on the feature matrix X and target vector y.</li>\n                  <li><code>Predictor.predict(X_new)</code>: Emits predicted categorical labels or continuous values.</li>\n                  <li><code>Transformer.transform(X)</code>: Applies feature scaling, normalization, or encoding.</li>\n                </ul>\n                "
+      },
+      {
+        "page_no": 3,
+        "chapter": "Section 3.2",
+        "title": "K-Nearest Neighbors & The Accuracy Paradox",
+        "content_html": "\n                <h2>3.2 K-Nearest Neighbors (k-NN)</h2>\n                <p>The k-NN classifier is a non-parametric instance-based algorithm. During training, it simply stores training samples in an n-dimensional metric space. To classify a new query point, it locates the k closest neighbors by Euclidean distance and takes a majority vote:</p>\n\n                <pre class=\"book-code\"><code>from sklearn.neighbors import KNeighborsClassifier\n\n# Train 11-NN classifier\nknn = KNeighborsClassifier(n_neighbors=11)\nknn.fit(X_train, y_train)\naccuracy = knn.score(X_test, y_test)\nprint(f\"Classification Accuracy: {accuracy:.4f}\")\n# Output: 0.8316 (83.16%)</code></pre>\n\n                <div class=\"book-card warning\">\n                  <h3>The Accuracy Paradox on Imbalanced Datasets</h3>\n                  <p>At first glance, 83.16% accuracy appears highly effective. However, examining the dataset label distribution reveals that <strong>81.57% of loans are fully funded</strong> (positive class) and only <strong>18.43% are unfunded</strong> (negative class).</p>\n                  <p>A completely blind, trivial rule that simply predicts <em>\"fully funded\"</em> for every single loan achieves 81.57% accuracy with zero learned intelligence! Therefore, <strong>accuracy is an insufficient metric for imbalanced problems</strong>.</p>\n                </div>\n                "
+      },
+      {
+        "page_no": 4,
+        "chapter": "Section 3.3",
+        "title": "Confusion Matrix & Advanced Metrics",
+        "content_html": "\n                <h2>3.3 Confusion Matrix &amp; Evaluation Metrics</h2>\n                <p>The Confusion Matrix provides a complete breakdown of actual versus predicted classes:</p>\n\n                <div class=\"book-table-wrap\">\n                  <table class=\"book-table\">\n                    <thead>\n                      <tr><th></th><th>Actual Positive</th><th>Actual Negative</th><th>Row Metric</th></tr>\n                    </thead>\n                    <tbody>\n                      <tr><td><strong>Predicted Positive</strong></td><td><strong>True Positive (TP)</strong></td><td><strong>False Positive (FP)</strong></td><td><strong>Precision</strong> = TP / (TP + FP)</td></tr>\n                      <tr><td><strong>Predicted Negative</strong></td><td><strong>False Negative (FN)</strong></td><td><strong>True Negative (TN)</strong></td><td><strong>Negative Pred. Value</strong> = TN / (TN + FN)</td></tr>\n                      <tr><td><strong>Column Metric</strong></td><td><strong>Recall (Sensitivity)</strong> = TP / (TP + FN)</td><td><strong>Specificity</strong> = TN / (TN + FP)</td><td><strong>Accuracy</strong> = (TP+TN) / Total</td></tr>\n                    </tbody>\n                  </table>\n                </div>\n\n                <h3>Key Metric Definitions</h3>\n                <ul class=\"book-list\">\n                  <li><strong>Sensitivity / Recall:</strong> Fraction of true positive cases correctly detected. Critical in medical diagnosis (cancer screening) and fraud detection where false negatives are dangerous.</li>\n                  <li><strong>Precision:</strong> Fraction of positive predictions that are truly positive. Critical in spam filters and criminal accusations where false alarms carry high penalties.</li>\n                  <li><strong>F1-Score:</strong> Harmonic mean of Precision and Recall:\n                    <div class=\"math-block\">F1 = 2 &bull; (Precision &bull; Recall) / (Precision + Recall)</div>\n                  </li>\n                </ul>\n\n                <pre class=\"book-code\"><code>from sklearn.metrics import confusion_matrix, classification_report\ny_pred = knn.predict(X_test)\nprint(confusion_matrix(y_test, y_pred))\nprint(classification_report(y_test, y_pred))</code></pre>\n                "
+      },
+      {
+        "page_no": 5,
+        "chapter": "Section 3.4",
+        "title": "Generalization, Overfitting & Learning Curves",
+        "content_html": "\n                <h2>3.4 Overfitting, Bias &amp; Variance</h2>\n                <p>Evaluating a model on the same data used for training produces <strong>In-Sample Error (Ein)</strong>. A 1-NN model memorizes training instances perfectly (Ein = 0, 100% accuracy), but performs poorly on unseen data! The real performance metric is <strong>Out-of-Sample Generalization Error (Eout)</strong>.</p>\n\n                <div class=\"book-card highlight\">\n                  <h3>The Bias-Variance Decomposition</h3>\n                  <ul>\n                    <li><strong>High Bias (Underfitting):</strong> The model is too simple (e.g. straight line for quadratic data). Both Ein and Eout are high.</li>\n                    <li><strong>High Variance (Overfitting):</strong> The model is overly complex (e.g. deep decision tree memorizing noise). Ein is low, but Eout explodes.</li>\n                  </ul>\n                </div>\n\n                <h3>Cures for Overfitting</h3>\n                <ol class=\"book-numbered-list\">\n                  <li><strong>Regularization:</strong> Penalizing complex weight vectors in the loss function:\n                    <ul>\n                      <li>L2 Ridge Regularization: Adds &lambda; &Sigma; w<sub>i</sub>&sup2;, promoting smooth, small weights.</li>\n                      <li>L1 LASSO Regularization: Adds &lambda; &Sigma; |w<sub>i</sub>|, driving irrelevant features to zero (sparsity).</li>\n                    </ul>\n                  </li>\n                  <li><strong>K-Fold Cross-Validation:</strong> Splitting data into K non-overlapping folds. Training on K-1 folds and evaluating on the held-out fold, repeated K times to obtain unbiased performance estimates.</li>\n                  <li><strong>Ensemble Techniques:</strong> Bagging (Bootstrap Aggregating) and Boosting (combining multiple weak learners).</li>\n                </ol>\n                "
+      },
+      {
+        "page_no": 6,
+        "chapter": "Section 3.5",
+        "title": "Trees, SVM & Artificial Neural Networks",
+        "content_html": "\n                <h2>3.5 Core Supervised Algorithms</h2>\n                \n                <h3>1. Decision Tree Classifiers (ID3)</h3>\n                <p>Recursively partitions the feature space along axis-orthogonal hyperplanes to maximize <strong>Information Gain</strong> based on Shannon Entropy:</p>\n                <div class=\"math-block\">H(S) = - &Sigma; p<sub>i</sub> log<sub>2</sub>(p<sub>i</sub>)</div>\n\n                <h3>2. Support Vector Machines (SVM)</h3>\n                <p>Finds the optimal separating hyperplane with <strong>Maximum Margin</strong> between classes:</p>\n                <div class=\"math-block\">min 0.5 &bull; ||a||&sup2; + C &Sigma; &xi;<sub>i</sub> &nbsp; subject to y<sub>i</sub>(a<sup>T</sup>x<sub>i</sub> + b) &ge; 1 - &xi;<sub>i</sub></div>\n                <p><strong>Kernel Trick:</strong> Maps non-linear data into higher-dimensional feature spaces where linear separation is possible using the Radial Basis Function (RBF) kernel: k(x<sub>i</sub>, x<sub>j</sub>) = exp(-&gamma; ||x<sub>i</sub> - x<sub>j</sub>||&sup2;).</p>\n\n                <h3>3. Artificial Neural Networks &amp; Backpropagation</h3>\n                <p>Multilayer Perceptrons (MLPs) consist of input, hidden, and output neuron layers. The <strong>Backpropagation Algorithm</strong> computes error gradients using the calculus chain rule:</p>\n                <div class=\"math-block\">&Delta;w<sub>ij</sub> = &eta; &bull; &delta;<sub>j</sub> &bull; O<sub>i</sub></div>\n                <p>Weights are iteratively updated via gradient descent to minimize output loss.</p>\n                "
+      },
+      {
+        "page_no": 7,
+        "chapter": "Review & Media",
+        "title": "Curated Video Lectures & Model Comparison",
+        "content_html": "\n                <h2>3.6 Video Lectures &amp; Model Comparison</h2>\n                <p>Enhance your machine learning skills with these hand-picked lectures from leading educators:</p>\n\n                <div class=\"video-ref-container\">\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>Support Vector Machines (SVM) &amp; The Kernel Trick</strong>\n                      <span class=\"video-ref-channel\">StatQuest with Josh Starmer &bull; 22 Mins</span>\n                      <p>Visual explanation of maximum margin hyperplanes, soft margin C, and RBF kernels.</p>\n                      <a href=\"https://www.youtube.com/watch?v=efR1C6CvhmE\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>Neural Networks: Backpropagation Visualized</strong>\n                      <span class=\"video-ref-channel\">3Blue1Brown &bull; 14 Mins</span>\n                      <p>Mathematical chain rule and gradient descent weight updates in deep neural networks.</p>\n                      <a href=\"https://www.youtube.com/watch?v=Ilg3gGewQ5U\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>Confusion Matrix, Precision &amp; Recall</strong>\n                      <span class=\"video-ref-channel\">StatQuest with Josh Starmer &bull; 16 Mins</span>\n                      <p>Evaluating classification performance when dealing with imbalanced datasets.</p>\n                      <a href=\"https://www.youtube.com/watch?v=4jRBRDbJemM\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n                </div>\n\n                <div class=\"book-callout review\">\n                  <h4>Unit 3 Model Comparison Summary</h4>\n                  <table class=\"book-table\">\n                    <thead>\n                      <tr><th>Algorithm</th><th>Pros</th><th>Cons</th></tr>\n                    </thead>\n                    <tbody>\n                      <tr><td><strong>KNN</strong></td><td>Simple, zero training time, non-linear boundaries.</td><td>Slow inference, sensitive to noise &amp; high dimensions.</td></tr>\n                      <tr><td><strong>Decision Trees</strong></td><td>Interpretable, handles non-linear &amp; categorical data.</td><td>Prone to overfitting without pruning.</td></tr>\n                      <tr><td><strong>SVM</strong></td><td>Effective in high dimensions, robust to overfitting.</td><td>Computationally heavy on large N, parameter tuning.</td></tr>\n                      <tr><td><strong>Neural Networks</strong></td><td>Universal function approximators, excels in audio/vision.</td><td>Black-box nature, requires extensive data &amp; GPU training.</td></tr>\n                    </tbody>\n                  </table>\n                </div>\n                "
+      }
+    ]
+  },
+  {
+    "module_no": "4",
+    "title": "Module 4: Regression Analysis, Unsupervised Learning & Clustering Algorithms",
+    "description": "Predicting continuous outcomes and discovering hidden structures: linear regression, OLS, polynomial & sparse models, distance metrics, K-Means, spectral and hierarchical clustering.",
+    "topics": "Simple Linear Regression, Ordinary Least Squares (OLS), Sum of Squared Errors, MSE & R-Squared, Multiple & Polynomial Regression, Sparse Models & LASSO, Logistic Regression, Unsupervised Learning Foundations, Distance Metrics (Euclidean, Manhattan, Minkowski), Clustering Quality (Rand Index, Homogeneity, Completeness, V-Measure, Silhouette), K-Means & K-Means++, Spectral Clustering, Hierarchical Agglomerative Clustering, Linkages & Dendrograms, Outlier Detection",
+    "youtube_links": [
+      {
+        "id": "nk2CQITm_eo",
+        "title": "Linear Regression, Clearly Explained!",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=nk2CQITm_eo",
+        "duration": "27:20",
+        "desc": "Derivation of OLS regression, calculating slope, intercept, and minimizing squared residuals."
+      },
+      {
+        "id": "2AQKmw14mHM",
+        "title": "R-squared and Adjusted R-squared Explained",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=2AQKmw14mHM",
+        "duration": "11:15",
+        "desc": "Evaluating regression fit, variance explained, and understanding coefficient of determination."
+      },
+      {
+        "id": "4b5d3muPQmA",
+        "title": "K-Means Clustering: Step-by-Step with Examples",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=4b5d3muPQmA",
+        "duration": "11:40",
+        "desc": "How K-Means iteratively clusters data, finds centroids, and selects optimal k."
+      },
+      {
+        "id": "7xHsRkOdVwo",
+        "title": "Hierarchical Clustering: Complete, Average & Ward Linkage",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=7xHsRkOdVwo",
+        "duration": "13:30",
+        "desc": "Dendrograms, agglomerative clustering logic, and choosing cluster thresholds."
+      },
+      {
+        "id": "yIYKR4sgzI8",
+        "title": "Logistic Regression Detailed Walkthrough",
+        "channel": "StatQuest with Josh Starmer",
+        "url": "https://www.youtube.com/watch?v=yIYKR4sgzI8",
+        "duration": "15:10",
+        "desc": "Sigmoid curves, log-odds, decision thresholds, and maximum likelihood estimation."
+      }
+    ],
+    "pages": [
+      {
+        "page_no": 1,
+        "chapter": "Curriculum Overview",
+        "title": "Unit 4: Regression & Unsupervised Clustering",
+        "content_html": "\n                <div class=\"book-cover-inner\">\n                  <div class=\"book-badge\">UNIT - 4</div>\n                  <h1 class=\"book-main-title\">Regression Analysis &amp; Unsupervised Clustering</h1>\n                  <p class=\"book-subtitle\">Linear Modeling, OLS Estimators, Distance Metrics, K-Means &amp; Hierarchical Trees</p>\n                  \n                  <div class=\"book-meta-grid\">\n                    <div class=\"meta-item\"><strong>Course:</strong> Data Science Laboratory</div>\n                    <div class=\"meta-item\"><strong>Department:</strong> CSE (Data Science)</div>\n                    <div class=\"meta-item\"><strong>Environment:</strong> Python 3, Scikit-Learn, SciPy, Matplotlib</div>\n                    <div class=\"meta-item\"><strong>Core Focus:</strong> Continuous Prediction &amp; Unsupervised Clustering</div>\n                  </div>\n\n                  <div class=\"book-callout info\">\n                    <h4>Course Objectives</h4>\n                    <ul>\n                      <li>Formulate simple and multiple linear regression models using Ordinary Least Squares (OLS).</li>\n                      <li>Evaluate goodness-of-fit via Mean Squared Error (MSE) and Coefficient of Determination (R&sup2;).</li>\n                      <li>Implement LASSO sparse modeling for automated feature selection.</li>\n                      <li>Apply Minkowski, Euclidean, and Manhattan distance metrics to partition data.</li>\n                      <li>Execute K-Means, Spectral, and Hierarchical Agglomerative Clustering algorithms.</li>\n                    </ul>\n                  </div>\n\n                  <div class=\"page-footer-note\">Mohan Babu University &bull; Department of Data Science</div>\n                </div>\n                "
+      },
+      {
+        "page_no": 2,
+        "chapter": "Section 4.1",
+        "title": "Linear Regression & Ordinary Least Squares",
+        "content_html": "\n                <h2>4.1 Linear Regression &amp; Ordinary Least Squares (OLS)</h2>\n                <p>Regression analysis models the relationship between a continuous response variable y and one or more independent predictor variables x. The simple linear regression model is:</p>\n                <div class=\"math-block\">y = a<sub>0</sub> + a<sub>1</sub>x</div>\n\n                <h3>Ordinary Least Squares (OLS) Estimator</h3>\n                <p>OLS selects intercept a0 and slope a1 by minimizing the <strong>Sum of Squared Errors (SSE)</strong>:</p>\n                <div class=\"math-block\">SSE = &Sigma; (a<sub>0</sub> + a<sub>1</sub>x<sub>j</sub> - y<sub>j</sub>)&sup2;</div>\n\n                <h3>Case Study: Polar Sea Ice &amp; Climate Change</h3>\n                <p>Analyzing 36 years of National Snow &amp; Ice Data Center monthly satellite records (1979-2014):</p>\n                <pre class=\"book-code\"><code>from sklearn.linear_model import LinearRegression\n\n# Normalize seasonal monthly fluctuations\nfor i in range(12):\n    month_mask = (ice2['mo'] == i + 1)\n    ice2.loc[month_mask, 'extent'] = 100 * (ice2.loc[month_mask, 'extent'] - month_means[i+1]) / month_means.mean()\n\n# Fit OLS regression line\nmodel = LinearRegression(fit_intercept=True)\nmodel.fit(ice2[['year']], ice2['extent'])\nprint(f\"Slope (rate of decline): {model.coef_[0]:.4f}% per year\")\n# Slope: -0.4528% per year (Proves significant long-term polar ice loss)</code></pre>\n                "
+      },
+      {
+        "page_no": 3,
+        "chapter": "Section 4.2",
+        "title": "Evaluating Regression, LASSO & Logistic Curves",
+        "content_html": "\n                <h2>4.2 Multiple Regression, LASSO &amp; Logistic Models</h2>\n                \n                <h3>Evaluating Regression Models</h3>\n                <p><strong>Mean Squared Error (MSE):</strong> MSE = (1 / n) &Sigma; (y<sub>i</sub> - y&#770;<sub>i</sub>)&sup2;</p>\n                <p><strong>Coefficient of Determination (R&sup2;):</strong></p>\n                <div class=\"math-block\">R&sup2; = 1 - [&Sigma; (y<sub>i</sub> - y&#770;<sub>i</sub>)&sup2; / &Sigma; (y<sub>i</sub> - y&#772;)&sup2;]</div>\n                <p>R&sup2; = 1.0 indicates perfect predictive performance; R&sup2; = 0 indicates performance no better than predicting the mean.</p>\n\n                <h3>Sparse Modeling with LASSO</h3>\n                <p>When datasets have many correlated or irrelevant features (e.g. Boston Housing dataset with 13 features), standard OLS suffers from high variance. <strong>LASSO (Least Absolute Shrinkage and Selection Operator)</strong> introduces an L1-norm penalty:</p>\n                <div class=\"math-block\">min [1 / (2n)] &bull; ||Xw - y||&sup2; + &alpha; ||w||<sub>1</sub></div>\n                <p>LASSO forces non-informative feature weights to exactly zero, performing automated feature selection!</p>\n\n                <h3>Logistic Regression for Classification</h3>\n                <p>When the target variable is binary (0 or 1), linear regression produces nonsensical predictions outside [0, 1]. <strong>Logistic Regression</strong> passes linear inputs through the Sigmoid function:</p>\n                <div class=\"math-block\">f(x) = 1 / (1 + e<sup>-&lambda;x</sup>)</div>\n                "
+      },
+      {
+        "page_no": 4,
+        "chapter": "Section 4.3",
+        "title": "Unsupervised Learning & Distance Metrics",
+        "content_html": "\n                <h2>4.3 Unsupervised Clustering Foundations</h2>\n                <p>Clustering partitions unlabeled data into disjoint clusters such that:</p>\n                <ul>\n                  <li><strong>High Intraclass Similarity:</strong> Objects in the same cluster are very close.</li>\n                  <li><strong>Low Interclass Similarity:</strong> Objects in different clusters are far apart.</li>\n                </ul>\n\n                <h3>Distance &amp; Similarity Metrics</h3>\n                <p>The general <strong>Minkowski Distance</strong> between two vectors a, b is:</p>\n                <div class=\"math-block\">d(a, b) = (&Sigma; |a<sub>i</sub> - b<sub>i</sub>|<sup>p</sup>)<sup>1/p</sup></div>\n                <ul>\n                  <li>p = 2 &implies; <strong>Euclidean Distance:</strong> Straight-line geometric distance.</li>\n                  <li>p = 1 &implies; <strong>Manhattan Distance:</strong> Grid-like city block distance.</li>\n                  <li>p = &infin; &implies; <strong>Chebyshev Distance:</strong> Maximum component difference max |a<sub>i</sub> - b<sub>i</sub>|.</li>\n                </ul>\n\n                <h3>Evaluating Cluster Quality Without Ground Truth</h3>\n                <div class=\"book-card\">\n                  <ul class=\"book-list\">\n                    <li><strong>Adjusted Rand Index (ARI):</strong> Measures clustering similarity adjusted for chance agreement (range: [-1, 1]).</li>\n                    <li><strong>V-Measure:</strong> Harmonic mean of Homogeneity and Completeness.</li>\n                    <li><strong>Silhouette Score:</strong> Measures how well-separated clusters are:\n                      <div class=\"math-block\">s(i) = (b - a) / max(a, b)</div>\n                      where a is intra-cluster distance and b is nearest-cluster distance. High values near +1 signify dense, well-isolated clusters.\n                    </li>\n                  </ul>\n                </div>\n                "
+      },
+      {
+        "page_no": 5,
+        "chapter": "Section 4.4",
+        "title": "K-Means & K-Means++ Clustering",
+        "content_html": "\n                <h2>4.4 K-Means Clustering Algorithm</h2>\n                <p>K-Means (Lloyd's Algorithm) partitions n samples into k clusters by minimizing within-cluster inertia:</p>\n                <div class=\"math-block\">Inertia = &Sigma; &Sigma; ||x - &mu;<sub>j</sub>||&sup2;</div>\n\n                <h3>Algorithmic Procedure</h3>\n                <ol class=\"book-numbered-list\">\n                  <li><strong>Initialize:</strong> Select k initial centroids (randomly or via k-means++).</li>\n                  <li><strong>Assign:</strong> Assign each data point to its closest centroid by Euclidean distance.</li>\n                  <li><strong>Update:</strong> Recompute each centroid &mu;<sub>j</sub> as the mean of all points assigned to it.</li>\n                  <li><strong>Converge:</strong> Repeat steps 2 and 3 until cluster assignments stabilize.</li>\n                </ol>\n\n                <div class=\"book-card tip\">\n                  <h4>The k-Means++ Advantage</h4>\n                  <p>Standard random initialization often converges to poor local minima. The <strong>k-means++</strong> initialization scheme picks centroids that are probabilistically spread far apart from one another, drastically speeding up convergence and guaranteeing superior clustering solutions.</p>\n                </div>\n\n                <pre class=\"book-code\"><code>from sklearn.cluster import KMeans\n\n# Fit K-Means on EU Education Expenditure indicators\nkmeans = KMeans(n_clusters=4, init='k-means++', random_state=42)\ncluster_labels = kmeans.fit_predict(edudrop)\nprint(\"Cluster Centroids:\n\", kmeans.cluster_centers_)</code></pre>\n                "
+      },
+      {
+        "page_no": 6,
+        "chapter": "Section 4.5",
+        "title": "Spectral & Hierarchical Agglomerative Clustering",
+        "content_html": "\n                <h2>4.5 Spectral &amp; Hierarchical Clustering</h2>\n                \n                <h3>Spectral Clustering for Non-Convex Geometries</h3>\n                <p>Standard K-Means assumes spherical, isotropic clusters and fails completely on concentric circles or interlocking moons. <strong>Spectral Clustering</strong> builds an affinity graph matrix A and solves the normalized graph Laplacian:</p>\n                <div class=\"math-block\">L = D<sup>-1/2</sup> (D - A) D<sup>-1/2</sup></div>\n                <p>Projecting points into the low-dimensional subspace of the smallest Laplacian eigenvectors separates complex, folded manifold structures effortlessly.</p>\n\n                <h3>Hierarchical Agglomerative Clustering</h3>\n                <p>A bottom-up method that begins with each sample in its own cluster and iteratively joins the closest pair of clusters until one hierarchy remains. Visualized via <strong>Dendrograms</strong>.</p>\n\n                <div class=\"book-table-wrap\">\n                  <table class=\"book-table\">\n                    <thead><tr><th>Linkage Criterion</th><th>Mathematical Definition</th><th>Cluster Characteristics</th></tr></thead>\n                    <tbody>\n                      <tr><td><strong>Complete Linkage</strong></td><td>max {d(x, y) : x &isin; A, y &isin; B}</td><td>Compact, tight spherical clusters.</td></tr>\n                      <tr><td><strong>Average Linkage</strong></td><td>Mean distance between all sample pairs in A and B</td><td>Balanced; sensitive to noise/outliers.</td></tr>\n                      <tr><td><strong>Ward Linkage</strong></td><td>Minimizes increase in total within-cluster variance</td><td>Most regular, balanced, variance-minimizing clusters.</td></tr>\n                    </tbody>\n                  </table>\n                </div>\n                "
+      },
+      {
+        "page_no": 7,
+        "chapter": "Review & Media",
+        "title": "Curated Video Lectures & Clustering Summary",
+        "content_html": "\n                <h2>4.6 Video Lectures &amp; Clustering Summary</h2>\n                <p>Master regression and unsupervised clustering techniques with these curated video lectures:</p>\n\n                <div class=\"video-ref-container\">\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>Linear Regression &amp; Ordinary Least Squares</strong>\n                      <span class=\"video-ref-channel\">StatQuest with Josh Starmer &bull; 27 Mins</span>\n                      <p>Clear step-by-step mathematical explanation of slope, intercept, and minimizing SSE.</p>\n                      <a href=\"https://www.youtube.com/watch?v=nk2CQITm_eo\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>K-Means Clustering Explained Step-by-Step</strong>\n                      <span class=\"video-ref-channel\">StatQuest with Josh Starmer &bull; 11 Mins</span>\n                      <p>How the K-means algorithm iteratively locates cluster centroids and assigns data points.</p>\n                      <a href=\"https://www.youtube.com/watch?v=4b5d3muPQmA\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>Hierarchical Clustering &amp; Dendrograms</strong>\n                      <span class=\"video-ref-channel\">StatQuest with Josh Starmer &bull; 13 Mins</span>\n                      <p>Understanding agglomerative tree structures, linkage criteria, and cutting clusters.</p>\n                      <a href=\"https://www.youtube.com/watch?v=7xHsRkOdVwo\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n                </div>\n\n                <div class=\"book-callout review\">\n                  <h4>Unit 4 Key Takeaways</h4>\n                  <p>1. OLS regression minimizes vertical squared residuals to discover optimal linear relationships.<br>\n                  2. LASSO regression drives uninformative feature weights to zero for automated feature selection.<br>\n                  3. K-Means operates on distance centroids; Ward hierarchical clustering builds nested tree dendrograms.</p>\n                </div>\n                "
+      }
+    ]
+  },
+  {
+    "module_no": "5",
+    "title": "Module 5: Network Analysis, Advanced Graph Mining & Big Data Systems",
+    "description": "Complex network analysis, graph centrality, PageRank, ego-networks, community detection, Generative AI (GANs, VAEs, Diffusion), Transformers/LLMs, and distributed Apache Spark architectures.",
+    "topics": "Graph Theory Fundamentals, Directed vs Undirected Graphs, Degree Distribution & Power Laws, NetworkX Library, Facebook Graph Analysis, Centrality Measures (Degree, Betweenness, Closeness, Eigenvector), PageRank & Random Walk Surfer, Ego-Networks & Overlaps, Community Detection (Louvain Modularity), Generative Deep Learning (GANs Minimax, VAEs ELBO, Diffusion), Transformer Architecture (Self-Attention, QKV Matrices), Apache Spark Core (Driver, Executors, RDDs, DAG), Spark SQL & Catalyst, Structured Streaming, GraphX Property Graphs, Spark MLlib Pipelines",
+    "youtube_links": [
+      {
+        "id": "2T5N28h-lT4",
+        "title": "Network Analysis and Graph Theory in Python with NetworkX",
+        "channel": "Stanford Online / NetworkX",
+        "url": "https://www.youtube.com/watch?v=2T5N28h-lT4",
+        "duration": "35:10",
+        "desc": "Representing networks, nodes, edges, subgraphs, and computing graph metrics in Python."
+      },
+      {
+        "id": "meonLcN7vLQ",
+        "title": "PageRank Algorithm: How Google Ranks the Web",
+        "channel": "Computerphile",
+        "url": "https://www.youtube.com/watch?v=meonLcN7vLQ",
+        "duration": "12:15",
+        "desc": "The mathematics of PageRank, transition probability matrices, and damping factors."
+      },
+      {
+        "id": "wjZofJX0v4U",
+        "title": "Attention is All You Need: Transformers Explained Visually",
+        "channel": "3Blue1Brown",
+        "url": "https://www.youtube.com/watch?v=wjZofJX0v4U",
+        "duration": "25:40",
+        "desc": "Self-attention mechanics, Query-Key-Value dot products, and multi-head attention."
+      },
+      {
+        "id": "G2ftu52pZ1Q",
+        "title": "Generative AI: GANs, VAEs & Diffusion Models Explained",
+        "channel": "DeepLearning.AI",
+        "url": "https://www.youtube.com/watch?v=G2ftu52pZ1Q",
+        "duration": "28:50",
+        "desc": "Minimax games in GANs, ELBO in VAEs, and forward/reverse denoising in Diffusion."
+      },
+      {
+        "id": "QaoJNXRLkF8",
+        "title": "Apache Spark Full Architecture & Distributed Computing Course",
+        "channel": "edureka!",
+        "url": "https://www.youtube.com/watch?v=QaoJNXRLkF8",
+        "duration": "45:30",
+        "desc": "Driver program, cluster managers, RDD transformations & actions, DAG scheduling, and Spark SQL."
+      }
+    ],
+    "pages": [
+      {
+        "page_no": 1,
+        "chapter": "Curriculum Overview",
+        "title": "Unit 5: Network Analysis & Big Data Systems",
+        "content_html": "\n                <div class=\"book-cover-inner\">\n                  <div class=\"book-badge\">UNIT - 5</div>\n                  <h1 class=\"book-main-title\">Network Analysis, Graph Mining &amp; Big Data Frameworks</h1>\n                  <p class=\"book-subtitle\">Centrality, PageRank, Ego-Networks, Community Detection, Generative AI &amp; Apache Spark</p>\n                  \n                  <div class=\"book-meta-grid\">\n                    <div class=\"meta-item\"><strong>Course:</strong> Data Science Laboratory</div>\n                    <div class=\"meta-item\"><strong>Department:</strong> CSE (Data Science)</div>\n                    <div class=\"meta-item\"><strong>Environment:</strong> Python 3, NetworkX, Apache Spark, PyTorch</div>\n                    <div class=\"meta-item\"><strong>Core Focus:</strong> Graph Mining, Generative AI &amp; Distributed Systems</div>\n                  </div>\n\n                  <div class=\"book-callout info\">\n                    <h4>Course Objectives</h4>\n                    <ul>\n                      <li>Analyze complex networks using NetworkX and graph theory fundamentals.</li>\n                      <li>Compute and interpret degree, betweenness, closeness, and eigenvector centralities.</li>\n                      <li>Derive and simulate Google's PageRank random surfer transition matrix.</li>\n                      <li>Extract ego-networks and detect community structures using the Louvain algorithm.</li>\n                      <li>Explore Generative AI models (GANs, VAEs, Diffusion) and Transformer self-attention.</li>\n                      <li>Architect distributed big data pipelines with Apache Spark RDDs, Catalyst, and MLlib.</li>\n                    </ul>\n                  </div>\n\n                  <div class=\"page-footer-note\">Mohan Babu University &bull; Department of Data Science</div>\n                </div>\n                "
+      },
+      {
+        "page_no": 2,
+        "chapter": "Section 5.1",
+        "title": "Graph Theory Fundamentals & Network Topologies",
+        "content_html": "\n                <h2>5.1 Graph Theory &amp; Network Topologies</h2>\n                <p>Graph theory traces its origins to <em>Leonhard Euler's</em> resolution of the Seven Bridges of K\u00f6nigsberg (1735). A graph G = (V, E) consists of a set of <strong>nodes (vertices)</strong> V representing entities, and connecting <strong>edges (links)</strong> E representing relationships.</p>\n\n                <div class=\"book-grid-2\">\n                  <div class=\"book-card\">\n                    <h4>Graph Classifications</h4>\n                    <ul>\n                      <li><strong>Undirected Graph:</strong> Symmetric relationship (e.g. mutual friendship, physical proximity).</li>\n                      <li><strong>Directed Graph (Digraph):</strong> Asymmetric arrows (e.g. Twitter follower, web hyperlinks).</li>\n                      <li><strong>Weighted Graph:</strong> Edges have quantitative values (e.g. highway distance, financial transfers).</li>\n                    </ul>\n                  </div>\n                  <div class=\"book-card\">\n                    <h4>Complex Network Models</h4>\n                    <ul>\n                      <li><strong>Small-World Networks:</strong> Most nodes are not direct neighbors, but any node can be reached in very few steps (6 degrees of separation).</li>\n                      <li><strong>Scale-Free Networks:</strong> Node degree follows a power-law distribution P(k) ~ k<sup>-&gamma;</sup>. Few massive hubs connect the entire system.</li>\n                    </ul>\n                  </div>\n                </div>\n\n                <h3>NetworkX in Python</h3>\n                <pre class=\"book-code\"><code>import networkx as nx\n\n# Loading Stanford SNAP Facebook Dataset (4,039 nodes, 88,234 edges)\nfb = nx.read_edgelist('facebook_combined.txt')\nprint(f\"Nodes: {fb.order()}, Edges: {fb.size()}\")\nprint(f\"Average Degree: {fb.size() / fb.order():.2f}\")  # Avg degree = 21.8</code></pre>\n                "
+      },
+      {
+        "page_no": 3,
+        "chapter": "Section 5.2",
+        "title": "Graph Centrality Measures & PageRank",
+        "content_html": "\n                <h2>5.2 Centrality Measures &amp; PageRank</h2>\n                <p>Centrality measures the relative structural importance of nodes within a network graph:</p>\n\n                <div class=\"book-table-wrap\">\n                  <table class=\"book-table\">\n                    <thead><tr><th>Measure</th><th>Mathematical Concept</th><th>Network Meaning</th></tr></thead>\n                    <tbody>\n                      <tr><td><strong>Degree Centrality</strong></td><td>CD(v) = deg(v) / (n - 1)</td><td>Most connected popular nodes.</td></tr>\n                      <tr><td><strong>Betweenness Centrality</strong></td><td>Ratio of shortest paths crossing node v</td><td>Gatekeeper nodes controlling information flow between communities.</td></tr>\n                      <tr><td><strong>Closeness Centrality</strong></td><td>Inversely proportional to average distance to all nodes</td><td>Nodes that can rapidly communicate across the entire network.</td></tr>\n                      <tr><td><strong>Eigenvector Centrality</strong></td><td>Proportional to sum of neighbor centralities</td><td>Nodes connected to other highly influential nodes.</td></tr>\n                    </tbody>\n                  </table>\n                </div>\n\n                <h3>The Google PageRank Algorithm</h3>\n                <p>Invented by Larry Page &amp; Sergey Brin (1998). Formulated as a <strong>Random Surfer Model</strong> with damping factor p = 0.85 to avoid dead ends:</p>\n                <div class=\"math-block\">R = (1 - p) M + p &bull; (1 / n) I</div>\n                <p>The transition probability vector converges iteratively (v<sub>k+1</sub> = M v<sub>k</sub>) to a unique stationary eigenvector a*.</p>\n                "
+      },
+      {
+        "page_no": 4,
+        "chapter": "Section 5.3",
+        "title": "Ego-Networks & Community Detection",
+        "content_html": "\n                <h2>5.3 Ego-Networks &amp; Community Detection</h2>\n                \n                <h3>Ego-Networks</h3>\n                <p>An <strong>ego-network</strong> consists of a focal node (the <em>ego</em>) and all its direct neighbors (the <em>alters</em>), along with all links connecting those alters.</p>\n                <ul>\n                  <li><strong>Radius 1 Ego-Network:</strong> Direct friends of node '107' (1,046 nodes).</li>\n                  <li><strong>Radius 2 Ego-Network:</strong> Friends-of-friends of node '107' (2,687 nodes &mdash; over 66% of the whole Facebook graph!).</li>\n                </ul>\n\n                <pre class=\"book-code\"><code># Extracting ego-network using NetworkX\nego_107 = nx.ego_graph(fb, '107', radius=1)\nprint(f\"Ego 107 Node Count: {len(ego_107)}\")</code></pre>\n\n                <h3>Community Detection: The Louvain Method</h3>\n                <p>A community is a cluster of graph nodes with high internal edge density and sparse external connections. The <strong>Louvain Method</strong> optimizes graph modularity Q through a greedy hierarchical algorithm:</p>\n\n                <pre class=\"book-code\"><code>import community as community_louvain\n\n# Extract communities from Facebook graph\npartition = community_louvain.best_partition(fb)\nnum_communities = len(set(partition.values()))\nprint(f\"Extracted {num_communities} distinct social communities!\")</code></pre>\n                "
+      },
+      {
+        "page_no": 5,
+        "chapter": "Section 5.4",
+        "title": "Generative Deep Learning & Transformer Models",
+        "content_html": "\n                <h2>5.4 Generative AI &amp; Transformers</h2>\n                \n                <h3>Generative Deep Learning Paradigms</h3>\n                <ul>\n                  <li><strong>Generative Adversarial Networks (GANs):</strong> A minimax zero-sum game between Generator G and Discriminator D:\n                    <div class=\"math-block\">min_G max_D V(D, G) = E[log D(x)] + E[log(1 - D(G(z)))]</div>\n                  </li>\n                  <li><strong>Variational Autoencoders (VAEs):</strong> Maps inputs to probabilistic latent vectors optimizing the Evidence Lower Bound (ELBO):\n                    <div class=\"math-block\">L = E[log P(X|z)] - D_KL(Q(z|X) || P(z))</div>\n                  </li>\n                  <li><strong>Diffusion Models:</strong> Adds progressive Gaussian noise across forward steps and trains a neural network to iteratively denoise the latent field.</li>\n                </ul>\n\n                <h3>Transformer Architectures &amp; Self-Attention</h3>\n                <p>Eliminating sequential RNN recurrence by processing entire token sequences concurrently via <strong>Scaled Dot-Product Attention</strong>:</p>\n                <div class=\"math-block\">Attention(Q, K, V) = softmax((Q &bull; K<sup>T</sup>) / &radic;d<sub>k</sub>) &bull; V</div>\n                <ul>\n                  <li><strong>Encoder Models (BERT):</strong> Bidirectional attention for classification &amp; NER.</li>\n                  <li><strong>Decoder Models (GPT):</strong> Causal autoregressive masking for generative text completion.</li>\n                </ul>\n                "
+      },
+      {
+        "page_no": 6,
+        "chapter": "Section 5.5",
+        "title": "Distributed Big Data Systems & Apache Spark",
+        "content_html": "\n                <h2>5.5 Distributed Big Data: Apache Spark</h2>\n                <p>When dataset volumes exceed single-machine RAM, distributed cluster computing frameworks partition and execute workloads in parallel.</p>\n\n                <h3>Apache Spark Architecture</h3>\n                <p>Governed by a central <strong>Driver Program</strong> interacting with a <strong>Cluster Manager</strong> (YARN, Kubernetes) to dispatch execution tasks across <strong>Worker Node Executors</strong>.</p>\n\n                <div class=\"book-card highlight\">\n                  <h4>Resilient Distributed Datasets (RDDs)</h4>\n                  <ul>\n                    <li><strong>Immutable:</strong> Datasets cannot be mutated; operations produce new RDD pointers.</li>\n                    <li><strong>Partitioned:</strong> Data splits physically across cluster nodes.</li>\n                    <li><strong>Fault-Tolerant via Lineage:</strong> RDDs record the Directed Acyclic Graph (DAG) of transformations, allowing instant recreation if a node fails.</li>\n                  </ul>\n                </div>\n\n                <h3>Lazy Evaluation vs Eager Actions</h3>\n                <p>Transformations (<code>.map()</code>, <code>.filter()</code>) are evaluated lazily by appending operational nodes to the DAG. Execution is triggered only when an Action (<code>.count()</code>, <code>.collect()</code>) is invoked.</p>\n\n                <h3>Advanced Spark Ecosystem</h3>\n                <ul class=\"book-list\">\n                  <li><strong>Spark SQL &amp; Catalyst Optimizer:</strong> Optimizes queries via predicate pushdown, rule-based heuristics, and runtime Janino Java bytecode generation.</li>\n                  <li><strong>Columnar Parquet:</strong> High-speed columnar storage reading only queried columns.</li>\n                  <li><strong>Structured Streaming:</strong> Real-time event ingestion over unbounded tables with watermarking.</li>\n                  <li><strong>GraphX:</strong> Distributed graph processing with VertexRDD and EdgeRDD abstractions.</li>\n                  <li><strong>Spark MLlib:</strong> Scalable machine learning pipelines with <code>CrossValidator</code> tuning.</li>\n                </ul>\n                "
+      },
+      {
+        "page_no": 7,
+        "chapter": "Review & Media",
+        "title": "Curated Video Lectures & Curriculum Wrap-Up",
+        "content_html": "\n                <h2>5.6 Video Lectures &amp; Curriculum Wrap-Up</h2>\n                <p>Congratulations on completing the Data Science Laboratory syllabus! Review these advanced lectures to explore enterprise AI systems:</p>\n\n                <div class=\"video-ref-container\">\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>Transformers &amp; Attention Explained Visually</strong>\n                      <span class=\"video-ref-channel\">3Blue1Brown &bull; 25 Mins</span>\n                      <p>Visual breakdown of how self-attention and Query-Key-Value matrices function.</p>\n                      <a href=\"https://www.youtube.com/watch?v=wjZofJX0v4U\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>How PageRank Works: Google's Core Algorithm</strong>\n                      <span class=\"video-ref-channel\">Computerphile &bull; 12 Mins</span>\n                      <p>The mathematical random walk, transition matrix, and damping factor calculation.</p>\n                      <a href=\"https://www.youtube.com/watch?v=meonLcN7vLQ\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n\n                  <div class=\"video-ref-card\">\n                    <div class=\"video-ref-icon\">&#9658;</div>\n                    <div class=\"video-ref-info\">\n                      <strong>Apache Spark Architecture &amp; RDD Masterclass</strong>\n                      <span class=\"video-ref-channel\">edureka! &bull; 45 Mins</span>\n                      <p>Comprehensive guide to distributed computing, DAG scheduling, Spark SQL, and MLlib.</p>\n                      <a href=\"https://www.youtube.com/watch?v=QaoJNXRLkF8\" target=\"_blank\" class=\"video-ref-link\">Watch on YouTube &rarr;</a>\n                    </div>\n                  </div>\n                </div>\n\n                <div class=\"book-callout review\">\n                  <h4>Department of Data Science &bull; Final Checklist</h4>\n                  <p>You have mastered Python computing, exploratory data analysis, hypothesis testing, supervised classification, linear &amp; non-linear regression, unsupervised clustering, social network analysis, and distributed big data pipelines!</p>\n                </div>\n                "
+      }
+    ]
+  }
+]
