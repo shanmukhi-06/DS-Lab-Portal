@@ -1682,3 +1682,261 @@ a:hover {
     text-align: left;
   }
 }
+
+
+/* ---------------------------------------------------------
+   Hero Profile Stack & Physical MBU ID Card
+   --------------------------------------------------------- */
+.hero-profile-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.mbu-badge-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent-navy);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.mbu-badge-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-blue);
+  border-left-color: var(--gold);
+}
+
+.mbu-badge-card__thumb-wrap {
+  position: relative;
+  width: 68px;
+  height: 98px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.15);
+  border: 1px solid var(--line);
+  background: #f1f5f9;
+}
+
+.mbu-badge-card__thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.25s ease;
+}
+
+.mbu-badge-card:hover .mbu-badge-card__thumb {
+  transform: scale(1.05);
+}
+
+.mbu-badge-card__zoom-badge {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.75);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+  transition: background 0.2s ease;
+}
+
+.mbu-badge-card:hover .mbu-badge-card__zoom-badge {
+  background: var(--primary-blue);
+}
+
+.mbu-badge-card__details {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.mbu-badge-card__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--primary-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.mbu-badge-card__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  display: inline-block;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.mbu-badge-card__title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.mbu-badge-card__meta {
+  font-size: 0.76rem;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+.mbu-badge-card__meta strong {
+  color: var(--accent-navy);
+}
+
+.mbu-badge-card__sub {
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.3;
+}
+
+.mbu-badge-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--primary-blue);
+  background: var(--surface-subtle);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  align-self: flex-start;
+}
+
+.mbu-badge-card__btn:hover {
+  background: var(--primary-blue);
+  color: #ffffff;
+  border-color: var(--primary-blue);
+}
+
+/* Modal Dialog ID Card */
+.modal__dialog--idcard {
+  max-width: 720px;
+  width: 92%;
+}
+
+.idcard-modal-body {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  padding: 24px;
+  align-items: start;
+}
+
+.idcard-modal-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--surface-subtle);
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+}
+
+.idcard-modal-img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.16);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.idcard-modal-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.idcard-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: rgba(30, 64, 175, 0.08);
+  color: var(--primary-blue);
+  font-size: 0.72rem;
+  font-weight: 700;
+  border-radius: 20px;
+  align-self: flex-start;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.idcard-modal-name {
+  font-family: var(--font-head);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.idcard-modal-table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  background: var(--surface-subtle);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  font-size: 0.85rem;
+}
+
+.idcard-modal-table div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 10px;
+}
+
+.idcard-modal-table dt {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.idcard-modal-table dd {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.idcard-modal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+@media (max-width: 640px) {
+  .idcard-modal-body {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+  .idcard-modal-img {
+    max-width: 180px;
+  }
+}

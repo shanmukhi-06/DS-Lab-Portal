@@ -90,6 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitExpBtn = document.getElementById('submitExpBtn');
 
   // DOM Elements - Details Modal
+  const mbuPhysicalIdCard = document.getElementById('mbuPhysicalIdCard');
+  const openIdCardModalBtn = document.getElementById('openIdCardModalBtn');
+  const idCardModal = document.getElementById('idCardModal');
   const detailsModal = document.getElementById('detailsModal');
   const detailExpNo = document.getElementById('detailExpNo');
   const detailTitle = document.getElementById('detailTitle');
@@ -516,6 +519,25 @@ document.addEventListener('DOMContentLoaded', () => {
         openDeleteModal('resource', resId, `Resource: "${r ? r.title : ''}"`);
       }
     });
+
+    // Physical ID Card Modal
+    if (mbuPhysicalIdCard && idCardModal) {
+      mbuPhysicalIdCard.addEventListener('click', () => {
+        openModal(idCardModal);
+      });
+      mbuPhysicalIdCard.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openModal(idCardModal);
+        }
+      });
+    }
+    if (openIdCardModalBtn && idCardModal) {
+      openIdCardModalBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openModal(idCardModal);
+      });
+    }
 
     // Modal close controls
     document.querySelectorAll('[data-close-modal]').forEach((el) => {
